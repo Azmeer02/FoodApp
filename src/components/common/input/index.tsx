@@ -34,6 +34,7 @@ const InputField: React.FC<InputProps> = ({ setData }) => {
       console.log("values = ", values);
       values.price = total;
       values.item = item;
+      values.totalAmount = totalAmount;
       setData(values);
     });
   };
@@ -190,15 +191,15 @@ const InputField: React.FC<InputProps> = ({ setData }) => {
                 <h2 className="price">{totalAmount}</h2>
               </Form.Item>
               <Form.Item>
-                {/* <Link to="/order-page"> */}
-                <Button
-                  htmlType="submit"
-                  onClick={onFormSubmit}
-                  style={{ float: "right" }}
-                >
-                  Place Order
-                </Button>
-                {/* </Link> */}
+                <Link to="/order-page">
+                  <Button
+                    htmlType="submit"
+                    onClick={onFormSubmit}
+                    style={{ float: "right" }}
+                  >
+                    Place Order
+                  </Button>
+                </Link>
               </Form.Item>
             </Form>
           </Paper>

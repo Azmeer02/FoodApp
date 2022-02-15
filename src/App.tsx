@@ -10,6 +10,7 @@ interface Props {
   price: number;
   item: string;
   amount: number;
+  totalAmount: number;
 }
 
 const App: React.FC = () => {

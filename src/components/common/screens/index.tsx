@@ -9,6 +9,7 @@ interface Props {
   price: number;
   item: string;
   amount: number;
+  totalAmount: number;
 }
 
 type InputProps = {
@@ -16,7 +17,7 @@ type InputProps = {
 };
 
 const Dashboard: React.FC<InputProps> = ({ data }) => {
-  console.log(data, "datadatadatadatadata");
+  console.log(data);
 
   return (
     <>
@@ -51,6 +52,12 @@ const Dashboard: React.FC<InputProps> = ({ data }) => {
               <b className="order-label">Amount {data?.name} have: </b>
               <u>
                 <b className="order-list">{data?.amount}</b>
+              </u>
+            </p>
+            <p>
+              <b className="order-label">Amount To Return: </b>
+              <u>
+                <b className="order-list">{data?.totalAmount}</b>
               </u>
             </p>
           </Card>
