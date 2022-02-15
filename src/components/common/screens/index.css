@@ -1,0 +1,85 @@
+@import url("https://fonts.googleapis.com/css2?family=Great+Vibes&family=Tangerine:wght@700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Bangers&family=Great+Vibes&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,wght@1,300&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Martel&display=swap");
+
+* {
+  margin: 0px;
+  padding: 0px;
+}
+
+.navigation {
+  background-image: url("./Barbecue-dish-item-2.jpg");
+  background-size: cover;
+  height: 75vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  -moz-box-shadow: inset 0 0 200px #dc143c;
+  -webkit-box-shadow: inset 0 0 200px #dc143c;
+  box-shadow: inset 0 0 200px #dc143c;
+}
+
+.inciter {
+  width: 100%;
+  text-align: center;
+}
+
+.inciter h1 {
+  color: white;
+  font-family: "Great Vibes", cursive;
+  text-shadow: 4px 4px #dc143c;
+  font-size: 175px;
+}
+
+.inciter h2 {
+  color: #ed5409;
+  text-shadow: 3px 3px yellow;
+  font-family: "Bangers", cursive;
+  font-size: 80px;
+  letter-spacing: 3px;
+  margin-top: -175px;
+}
+
+.dashboard {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f42b03;
+  background-image: linear-gradient(316deg, #f42b03 0%, #ffbe0b 74%);
+  -moz-box-shadow: inset 0 0 50px red;
+  -webkit-box-shadow: inset 0 0 50px red;
+  box-shadow: inset 0 0 50px red;
+}
+
+.order-paper {
+  width: 40%;
+  margin-bottom: 25px;
+  margin-top: 25px;
+  border: 5px solid maroon;
+  padding: 25px;
+  background-color: #ee9617;
+  background-image: linear-gradient(315deg, #ee9617 0%, #db3030 74%);
+}
+
+.card {
+  margin: 0 auto;
+  width: 70%;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  border-radius: 25px;
+}
+
+.order-label {
+  font-family: "Source Serif 4", sans-serif;
+  font-size: 16px;
+}
+
+.order-list {
+  font-size: 16px;
+  /* letter-spacing: 1px; */
+  font-family: "Martel", serif;
+  text-decoration: underline slategray;
+  text-decoration-thickness: 2px;
+}

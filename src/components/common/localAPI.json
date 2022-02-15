@@ -1,0 +1,265 @@
+{
+    "orders": [
+        {
+            "id" : 1,
+            "restaurantName": "Al-Naz (Main)",
+            "items": [
+                {
+                    "id" : 2,
+                    "name": "Chicken Biryani (SMALL)",
+                    "prices": 90
+                },
+                {
+                    "id" : 3,
+                    "name": "Chicken Biryani (MEDIUM)",
+                    "prices": 130
+                },
+                {
+                    "id" : 4,
+                    "name": "Chicken Biryani (LARGE)",
+                    "prices": 160
+                },
+                {
+                    "id" : 5,
+                    "name": "Plain Biryani (SMALL)",
+                    "prices": 70
+                },
+                {
+                    "id" : 6,
+                    "name": "Plain Biryani (MEDIUM)",
+                    "prices": 110
+                },
+                {
+                    "id" : 7,
+                    "name": "Plain Biryani (LARGE)",
+                    "prices": 140
+                }
+            ]
+        },
+        {
+            "id" : 8,
+            "restaurantName": "Al-Naz (Back)",
+            "items": [
+                {
+                    "id" : 9,
+                    "name": "Chicken Biryani (SMALL)",
+                    "prices": 90
+                },
+                {
+                    "id" : 10,
+                    "name": "Chicken Biryani (MEDIUM)",
+                    "prices": 130
+                },
+                {
+                    "id" : 11,
+                    "name": "Chicken Biryani (LARGE)",
+                    "prices": 160
+                },
+                {
+                    "id" : 12,
+                    "name": "Plain Biryani (SMALL)",
+                    "prices": 60
+                },
+                {
+                    "id" : 13,
+                    "name": "Plain Biryani (MEDIUM)",
+                    "prices": 100
+                },
+                {
+                    "id" : 14,
+                    "name": "Plain Biryani (LARGE)",
+                    "prices": 120
+                }
+            ]
+        },
+        {
+            "id" : 15,
+            "restaurantName": "Allah Wala Hotel",
+            "items": [
+                {
+                    "id" : 16,
+                    "name": "Chicken Pulao (SMALL)",
+                    "prices": 90
+                },
+                {
+                    "id" : 17,
+                    "name": "Chicken Pulao (MEDIUM)",
+                    "prices": 120
+                },
+                {
+                    "id" : 18,
+                    "name": "Chicken Pulao (LARGE)",
+                    "prices": 160
+                },
+                {
+                    "id" : 19,
+                    "name": "Plain Pulao (SMALL)",
+                    "prices": 60
+                },
+                {
+                    "id" : 20,
+                    "name": "Plain Pulao (MEDIUM)",
+                    "prices": 100
+                },
+                {
+                    "id" : 21,
+                    "name": "Plain Pulao (LARGE)",
+                    "prices": 120
+                }
+            ]
+        },
+        {
+            "id" : 22,
+            "restaurantName": "Hunger Station",
+            "items": [
+                {
+                    "id" : 23,
+                    "name": "Chicken Biryani (SMALL)",
+                    "prices": 90
+                },
+                {
+                    "id" : 24,
+                    "name": "Chicken Biryani (MEDIUM)",
+                    "prices": 120
+                },
+                {
+                    "id" : 25,
+                    "name": "Chicken Biryani (LARGE)",
+                    "prices": 160
+                },
+                {
+                    "id" : 26,
+                    "name": "Plain Biryani (SMALL)",
+                    "prices": 60
+                },
+                {
+                    "id" : 27,
+                    "name": "Plain Biryani (MEDIUM)",
+                    "prices": 100
+                },
+                {
+                    "id" : 28,
+                    "name": "Plain Biryani (LARGE)",
+                    "prices": 120
+                }
+            ]
+        },
+        {
+            "id" : 29,
+            "restaurantName": "Quetta Hotel",
+            "items": [
+                {
+                    "id": 30,
+                    "name": "Paratha",
+                    "prices": 30
+                },
+                {
+                    "id": 31,
+                    "name": "Alu Paratha",
+                    "prices": 60
+                },
+                {
+                    "id" : 32,
+                    "name": "Kebab Paratha",
+                    "prices": 70
+                },
+                {
+                    "id" : 33,
+                    "name": "Cheese Paratha",
+                    "prices": 100
+                }
+            ]
+        },
+        {
+            "id" : 34,
+            "restaurantName": "Sunny Bhai & Sons",
+            "items": [
+                {
+                    "id": 35,
+                    "name": "Cholay (SMALL)",
+                    "prices": 60
+                },
+                {
+                    "id": 36,
+                    "name": "Cholay (MEDIUM)",
+                    "prices": 80
+                },
+                {
+                    "id": 37,
+                    "name": "Cholay (LARGE)",
+                    "prices": 120
+                },
+                {
+                    "id": 38,
+                    "name": "Anda Gotala",
+                    "prices": 100
+                },
+                {
+                    "id": 39,
+                    "name": "Chana Daal (SMALL)",
+                    "prices": 60
+                },
+                {
+                    "id": 40,
+                    "name": "Chana Daal (MEDIUM)",
+                    "prices": 80
+                },
+                {
+                    "id": 41,
+                    "name": "Chana Daal(LARGE)",
+                    "prices": 120
+                },
+                {
+                    "id": 42,
+                    "name": "Karahi",
+                    "prices": 120
+                },
+                {
+                    "id": 43,
+                    "name": "Kaleji",
+                    "prices": 120
+                },
+                {
+                    "id": 44,
+                    "name": "Aaloo Qeema",
+                    "prices": 120
+                },
+                {
+                    "id": 45,
+                    "name": "Maash Daal (SMALL)",
+                    "prices": 60
+                },
+                {
+                    "id": 46,
+                    "name": "Maash Daal (MEDIUM)",
+                    "prices": 80
+                },
+                {
+                    "id": 47,
+                    "name": "Maash Daal(LARGE)",
+                    "prices": 120
+                },
+                {
+                    "id": 48,
+                    "name": "Aaloo Palak (SMALL)",
+                    "prices": 60
+                },
+                {
+                    "id": 49,
+                    "name": "Aaloo Palak (MEDIUM)",
+                    "prices": 80
+                },
+                {
+                    "id": 50,
+                    "name": "Aaloo Palak (LARGE)",
+                    "prices": 120
+                },
+                {
+                    "id": 51,
+                    "name": "Daal Gotala",
+                    "prices": 120
+                }
+            ]
+        }
+    ]
+}

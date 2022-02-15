@@ -1,0 +1,40 @@
+@import url("https://fonts.googleapis.com/css2?family=Great+Vibes&family=Tangerine:wght@700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Bangers&family=Great+Vibes&display=swap");
+
+* {
+  margin: 0px;
+  padding: 0px;
+}
+
+.navigation {
+  background-image: url("./Barbecue-dish-item-2.jpg");
+  background-size: cover;
+  height: 75vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  -moz-box-shadow: inset 0 0 200px #dc143c;
+  -webkit-box-shadow: inset 0 0 200px #dc143c;
+  box-shadow: inset 0 0 200px #dc143c;
+}
+
+.inciter {
+  width: 100%;
+  text-align: center;
+}
+
+.inciter h1 {
+  color: white;
+  font-family: "Great Vibes", cursive;
+  text-shadow: 4px 4px #dc143c;
+  font-size: 175px;
+}
+
+.inciter h2 {
+  color: #ed5409;
+  text-shadow: 3px 3px yellow;
+  font-family: "Bangers", cursive;
+  font-size: 80px;
+  letter-spacing: 3px;
+  margin-top: -175px;
+}

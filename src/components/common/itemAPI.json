@@ -1,0 +1,345 @@
+{
+    "orders": [
+        {
+            "id" : 1,
+            "restaurantName": "Al-Naz (Main)",
+            "items": [
+                {
+                    "id" : 2,
+                    "name": "Chicken Biryani",
+                    "prices": 90
+                },
+                {
+                    "id" : 6,
+                    "name": "Plain Biryani",
+                    "prices": [
+                        {
+                            "id" : 7,
+                            "value": 70
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id" : 8,
+            "restaurantName": "Al-Naz (Back)",
+            "items": [
+                {
+                    "id" : 9,
+                    "name": "Chicken Biryani",
+                    "prices": [
+                        {
+                            "id" : 10,
+                            "value": 90
+                        },
+                        {
+                            "id" : 11,
+                            "value": 130
+                        },
+                        {
+                            "id" : 12,
+                            "value": 160
+                        }
+                    ]
+                },
+                {
+                    "id" : 13,
+                    "name": "Plain Biryani",
+                    "prices": [
+                        {
+                            "id" : 14,
+                            "value": 70
+                        },
+                        {
+                            "id" : 15,
+                            "value": 60
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id" : 16,
+            "restaurantName": "Allah Wala Hotel",
+            "items": [
+                {
+                    "id" : 17,
+                    "name": "Chicken Pulao",
+                    "prices": [
+                    {
+                        "id" : 18,
+                        "value": 90
+                    },
+                    {
+                        "id" : 19,
+                        "value": 100
+                    },
+                    {
+                        "id" : 20,
+                        "value": 110
+                    },
+                    {
+                        "id" : 21,
+                        "value": 120
+                    },
+                    {
+                        "id" : 22,
+                        "value": 130
+                    },
+                    {
+                        "id" : 23,
+                        "value": 140
+                    },
+                    {
+                        "id" : 24,
+                        "value": 150
+                    },
+                    {
+                        "id" : 25,
+                        "value": 160
+                    },
+                    {
+                        "id" : 26,
+                        "value": 170
+                    },
+                    {
+                        "id" : 27,
+                        "value": 180
+                    },
+                    {
+                        "id" : 28,
+                        "value": 190
+                    },
+                    {
+                        "id" : 29,
+                        "value": 200
+                    }
+                ]
+            },
+            {
+                "id" : 30,
+                "name": "Plain Pulao",
+                "prices": [
+                    {
+                        "id" : 31,
+                        "value": 60
+                    },
+                    {
+                        "id" : 32,
+                        "value": 70
+                    },
+                    {
+                        "id" : 33,
+                        "value": 80
+                    },
+                    {
+                        "id" : 34,
+                        "value": 90
+                    },
+                    {
+                        "id" : 35,
+                        "value": 100
+                    },
+                    {
+                        "id" : 36,
+                        "value": 110
+                    },
+                    {
+                        "id" : 37,
+                        "value": 120
+                    },
+                    {
+                        "id" : 38,
+                        "value": 130
+                    },
+                    {
+                        "id" : 39,
+                        "value": 140
+                    },
+                    {
+                        "id" : 40,
+                        "value": 150
+                    }
+                ]
+                }
+            ]
+        },
+        {
+            "id" : 41,
+            "restaurantName": "Hunger Station",
+            "items": [
+                {
+                    "id" : 42,
+                    "name": "Chicken Biryani",
+                    "prices": [
+                        {
+                            "id" : 43,
+                            "value": 160
+                        }
+                    ]
+                },
+                {
+                    "id" : 44,
+                    "name": "Plain Biryani",
+                    "prices": [
+                        {
+                            "id" : 45,
+                            "value": 80
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id" : 46,
+            "restaurantName": "Quetta Hotel",
+            "items": [
+                {
+                    "id": 47,
+                    "name": "Paratha",
+                    "prices": [
+                        {
+                            "id" : 48,
+                            "value": 30
+                        }
+                    ]
+                },
+                {
+                    "id": 49,
+                    "name": "Alu Paratha",
+                    "prices": [
+                        {
+                            "id" : 50,
+                            "value": 60
+                        }
+                    ]
+                },
+                {
+                    "name": "Kebab Paratha",
+                    "prices": [
+                        {
+                            "id" : 52,
+                            "value": 70
+                        }
+                    ]
+                },
+                {
+                    "name": "Cheese Paratha",
+                    "prices": [
+                        {
+                            "id" : 53,
+                            "value": 100
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id" : 54,
+            "restaurantName": "Roti & Salan",
+            "items": [
+                {
+                    "id": 55,
+                    "name": "Cholay",
+                    "prices": [
+                        {
+                            "id": 56,
+                            "value": 30
+                        }
+                    ]
+                },
+                {
+                    "id": 57,
+                    "name": "Anda Gotala",
+                    "prices": [
+                        {
+                            "id": 58,
+                            "value": 60
+                        }
+                    ]
+                },
+                {
+                    "id": 59,
+                    "name": "Chanay Daal",
+                    "prices": [
+                        {
+                            "id": 60,
+                            "value": 70
+                        }
+                    ]
+                },
+                {
+                    "id": 61,
+                    "name": "Karahi",
+                    "prices": [
+                        {
+                            "id": 62,
+                            "value": 100
+                        }
+                    ]
+                },
+                {
+                    "id": 63,
+                    "name": "Kaleji",
+                    "prices": [
+                        {
+                            "id": 64,
+                            "value": 30
+                        }
+                    ]
+                },
+                {
+                    "id": 65,
+                    "name": "Aaloo Qeema",
+                    "prices": [
+                        {
+                            "id": 66,
+                            "value": 60
+                        }
+                    ]
+                },
+                {
+                    "id": 67,
+                    "name": "Kari",
+                    "prices": [
+                        {
+                            "id": 68,
+                            "value": 70
+                        }
+                    ]
+                },
+                {
+                    "id": 69,
+                    "name": "Maash Daal",
+                    "prices": [
+                        {
+                            "id": 70,
+                            "value": 100
+                        }
+                    ]
+                },
+                {
+                    "id": 71,
+                    "name": "Aaloo Palak",
+                    "prices": [
+                        {
+                            "id": 72,
+                            "value": 100
+                        }
+                    ]
+                },
+                {
+                    "id": 73,
+                    "name": "Daal Gotala",
+                    "prices": [
+                        {
+                            "id": 74,
+                            "value": 100
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+} 
