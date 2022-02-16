@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import Header from "../header/index";
 import "antd/dist/antd.css";
-import { Form, Select, Button, Input } from "antd";
+import { Form, Select, Button, Input, Alert } from "antd";
 import { Box, Paper } from "@mui/material";
 import Orders from "../localAPI.json";
 import "./index.css";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 interface Orders {
   orders: any;
@@ -17,17 +17,19 @@ type InputProps = {
 
 const InputField: React.FC<InputProps> = ({ setData }) => {
   const [test, setTest] = useState<any>(null);
+  const [alert, setAlert] = useState<boolean>(false);
   const [total, setTotal] = useState<any>([]);
   const [item, setItem] = useState<any>();
   const [amount, setAmount] = useState<any>();
   const [totalAmount, setTotalAmount] = useState<any>();
-  // console.log("Total Amount", totalAmount);
 
   const newOrders: Orders = Orders;
 
   const { Option } = Select;
 
   const [form] = Form.useForm();
+
+  let navigate = useNavigate();
 
   const onFormSubmit = () => {
     form.validateFields().then((values) => {
@@ -36,13 +38,17 @@ const InputField: React.FC<InputProps> = ({ setData }) => {
       values.item = item;
       values.totalAmount = totalAmount;
       setData(values);
+      navigate(`/order-page`);
     });
   };
 
   const returnAmount = () => {
     const returnCash = amount - total;
-    setTotalAmount(returnCash);
-    console.log(returnCash);
+    if (amount >= total) {
+      setTotalAmount(returnCash);
+    } else {
+      setAlert(true);
+    }
   };
 
   const onRestaurantChange = (value: any, match: any) => {
@@ -175,8 +181,8 @@ const InputField: React.FC<InputProps> = ({ setData }) => {
                 </Select>
               </Form.Item>
               <Form.Item
-                label="Cash u have"
                 name="amount"
+                label="Cash u have"
                 rules={[{ required: true, message: "Please select Amount!" }]}
               >
                 <Input
@@ -184,22 +190,28 @@ const InputField: React.FC<InputProps> = ({ setData }) => {
                   onBlur={returnAmount}
                 />
               </Form.Item>
+              {alert && (
+                <Alert
+                  message="Please add Equivalent or Greater Amount"
+                  type="error"
+                  style={{ marginTop: "5px" }}
+                ></Alert>
+              )}
+
               <Form.Item label="Total Item Cost">
                 <h2 className="price">{total}</h2>
               </Form.Item>
               <Form.Item label="Cash to Return">
-                <h2 className="price">{totalAmount}</h2>
+                <h2>{totalAmount}</h2>
               </Form.Item>
               <Form.Item>
-                <Link to="/order-page">
-                  <Button
-                    htmlType="submit"
-                    onClick={onFormSubmit}
-                    style={{ float: "right" }}
-                  >
-                    Place Order
-                  </Button>
-                </Link>
+                <Button
+                  htmlType="submit"
+                  onClick={onFormSubmit}
+                  style={{ float: "right" }}
+                >
+                  Place Order
+                </Button>
               </Form.Item>
             </Form>
           </Paper>
