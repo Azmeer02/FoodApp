@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./index.css";
 import { Card } from "antd";
 import { Paper } from "@mui/material";
+import { doc, getDoc } from "firebase/firestore";
+import fireStore from "../Config/firebase";
 
 interface Props {
   name: string;
@@ -17,7 +19,20 @@ type InputProps = {
 };
 
 const Dashboard: React.FC<InputProps> = ({ data }) => {
-  console.log(data);
+  useEffect(() => {
+    const userData = async () => {
+      const db = fireStore;
+      const docRef = doc(db, `User`);
+      const docSnap = await getDoc(docRef);
+      if (docSnap.exists()) {
+        console.log("Document data:", docSnap.data());
+      } else {
+        console.log("No such document!");
+      }
+    };
+    userData().catch(console.error);
+    // console.log(data)
+  }, []);
 
   return (
     <>

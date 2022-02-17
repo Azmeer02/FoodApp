@@ -6,6 +6,8 @@ import { Box, Paper } from "@mui/material";
 import Orders from "../localAPI.json";
 import "./index.css";
 import { useNavigate } from "react-router-dom";
+import { addDoc, collection } from "firebase/firestore";
+import fireStore from "../Config/firebase";
 
 interface Orders {
   orders: any;
@@ -16,19 +18,17 @@ type InputProps = {
 };
 
 const InputField: React.FC<InputProps> = ({ setData }) => {
+  const [name, setName] = useState<string>("");
   const [test, setTest] = useState<any>(null);
-  const [alert, setAlert] = useState<boolean>(false);
   const [total, setTotal] = useState<any>([]);
   const [item, setItem] = useState<any>();
   const [amount, setAmount] = useState<any>();
   const [totalAmount, setTotalAmount] = useState<any>();
+  const [alert, setAlert] = useState<boolean>(false);
 
   const newOrders: Orders = Orders;
-
   const { Option } = Select;
-
   const [form] = Form.useForm();
-
   let navigate = useNavigate();
 
   const onFormSubmit = () => {
@@ -39,6 +39,7 @@ const InputField: React.FC<InputProps> = ({ setData }) => {
       values.totalAmount = totalAmount;
       setData(values);
       navigate(`/order-page`);
+      userData();
     });
   };
 
@@ -46,6 +47,7 @@ const InputField: React.FC<InputProps> = ({ setData }) => {
     const returnCash = amount - total;
     if (amount >= total) {
       setTotalAmount(returnCash);
+      setAlert(false);
     } else {
       setAlert(true);
     }
@@ -59,6 +61,21 @@ const InputField: React.FC<InputProps> = ({ setData }) => {
     form.setFieldsValue({
       ["restaurant"]: match.children,
     });
+  };
+
+  /* Firebase Initialization*/
+
+  const userData = async () => {
+    const db = fireStore;
+    let data = await addDoc(collection(db, "User"), {
+      Name: name,
+      RestaurantName: test.restaurantName,
+      Amount: amount,
+      Price: total,
+      TotalAmount: totalAmount,
+      ItemOrder: item,
+    });
+    console.log(data);
   };
 
   return (
@@ -82,7 +99,7 @@ const InputField: React.FC<InputProps> = ({ setData }) => {
                   { required: true, message: "Please select your Username!" },
                 ]}
               >
-                <Select>
+                <Select onChange={setName}>
                   <Select.Option value="Mohsin Ghani">
                     Mohsin Ghani
                   </Select.Option>
