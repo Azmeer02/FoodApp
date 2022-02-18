@@ -4,4 +4,5 @@ export interface Props {
   price: number;
   item: string;
   amount: number;
+  id: string;
 }

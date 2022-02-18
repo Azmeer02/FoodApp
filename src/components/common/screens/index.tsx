@@ -1,9 +1,10 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import "./index.css";
 import { Card } from "antd";
 import { Paper } from "@mui/material";
-import { doc, getDoc } from "firebase/firestore";
+import "firebase/firestore";
 import fireStore from "../Config/firebase";
+import { doc, getDoc } from "firebase/firestore";
 
 interface Props {
   name: string;
@@ -12,27 +13,32 @@ interface Props {
   item: string;
   amount: number;
   totalAmount: number;
+  id: string;
 }
 
 type InputProps = {
   data: Props | null;
+  id: Props | null;
 };
 
-const Dashboard: React.FC<InputProps> = ({ data }) => {
+const Dashboard: React.FC<InputProps> = ({ data, id }: any) => {
+  const orderId = new URLSearchParams(window.location.search).get("orderId");
+  const [allOrders, setAllOrders] = useState<any>(null);
   useEffect(() => {
     const userData = async () => {
-      const db = fireStore;
-      const docRef = doc(db, `User`);
+      const fs = fireStore;
+      const docRef = doc(fs, "User", `${orderId}`);
       const docSnap = await getDoc(docRef);
+
       if (docSnap.exists()) {
         console.log("Document data:", docSnap.data());
+        setAllOrders(docSnap.data());
       } else {
         console.log("No such document!");
       }
     };
-    userData().catch(console.error);
-    // console.log(data)
-  }, []);
+    userData();
+  }, [orderId]);
 
   return (
     <>
@@ -44,35 +50,35 @@ const Dashboard: React.FC<InputProps> = ({ data }) => {
       </div>
       <div className="dashboard">
         <Paper elevation={8} className="order-paper">
-          <Card className="card" title={data?.name} bordered={true}>
+          <Card className="card" title={allOrders?.Name} bordered={true}>
             <p>
               <b className="order-label">Restaurant Name: </b>
               <u>
-                <b className="order-list">{data?.restaurant}</b>
+                <b className="order-list">{allOrders?.RestaurantName}</b>
               </u>
             </p>
             <p>
-              <b className="order-label">{data?.name} Order: </b>
+              <b className="order-label">{allOrders?.Name} Order: </b>
               <u>
-                <b className="order-list">{data?.item}</b>
+                <b className="order-list">{allOrders?.ItemOrder}</b>
               </u>
             </p>
             <p>
               <b className="order-label">Total Order Cost: </b>
               <u>
-                <b className="order-list">{data?.price}</b>
+                <b className="order-list">{allOrders?.Price}</b>
               </u>
             </p>
             <p>
-              <b className="order-label">Amount {data?.name} have: </b>
+              <b className="order-label">Amount {allOrders?.Name} have: </b>
               <u>
-                <b className="order-list">{data?.amount}</b>
+                <b className="order-list">{allOrders?.Amount}</b>
               </u>
             </p>
             <p>
               <b className="order-label">Amount To Return: </b>
               <u>
-                <b className="order-list">{data?.totalAmount}</b>
+                <b className="order-list">{allOrders?.TotalAmount}</b>
               </u>
             </p>
           </Card>

@@ -15,9 +15,10 @@ interface Orders {
 
 type InputProps = {
   setData: CallableFunction;
+  setId: CallableFunction;
 };
 
-const InputField: React.FC<InputProps> = ({ setData }) => {
+const InputField: React.FC<InputProps> = ({ setData, setId }) => {
   const [name, setName] = useState<string>("");
   const [test, setTest] = useState<any>(null);
   const [total, setTotal] = useState<any>([]);
@@ -25,6 +26,7 @@ const InputField: React.FC<InputProps> = ({ setData }) => {
   const [amount, setAmount] = useState<any>();
   const [totalAmount, setTotalAmount] = useState<any>();
   const [alert, setAlert] = useState<boolean>(false);
+  const currDate = new Date();
 
   const newOrders: Orders = Orders;
   const { Option } = Select;
@@ -38,8 +40,7 @@ const InputField: React.FC<InputProps> = ({ setData }) => {
       values.item = item;
       values.totalAmount = totalAmount;
       setData(values);
-      navigate(`/order-page`);
-      userData();
+      userData().then((data) => navigate(`/order-page?orderId=${data}`));
     });
   };
 
@@ -74,8 +75,9 @@ const InputField: React.FC<InputProps> = ({ setData }) => {
       Price: total,
       TotalAmount: totalAmount,
       ItemOrder: item,
+      Date: currDate,
     });
-    console.log(data);
+    return data?.id;
   };
 
   return (
