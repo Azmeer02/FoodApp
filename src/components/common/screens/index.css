@@ -12,8 +12,7 @@
 .navigation {
   background-image: url("./Barbecue-dish-item-2.jpg");
   background-size: cover;
-  height: 75vh;
-  display: flex;
+  height: 100vh;
   align-items: center;
   justify-content: center;
   -moz-box-shadow: inset 0 0 200px #dc143c;
@@ -43,7 +42,9 @@
 }
 
 .dashboard {
-  display: flex;
+  /* height: 100vh; */
+  padding-top: 20px;
+  padding-bottom: 35px;
   justify-content: center;
   align-items: center;
   background-color: #f42b03;
@@ -54,9 +55,8 @@
 }
 
 .order-paper {
-  width: 40%;
+  width: 50%;
   margin-bottom: 25px;
-  margin-top: 25px;
   border: 5px solid maroon;
   padding: 25px;
   background-color: #ee9617;
@@ -64,8 +64,7 @@
 }
 
 .card {
-  margin: 0 auto;
-  width: 70%;
+  width: 100%;
   text-align: center;
   justify-content: center;
   align-items: center;
@@ -89,4 +88,9 @@
 .ant-card-head-title {
   font-size: 25px;
   font-family: "Cinzel", serif;
+}
+
+.css-1qz17ui-MuiPaper-root {
+  margin: 0 auto;
+  margin-top: 15px;
 }
