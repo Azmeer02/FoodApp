@@ -8,6 +8,7 @@ import "./index.css";
 import { useNavigate } from "react-router-dom";
 import { addDoc, collection } from "firebase/firestore";
 import fireStore from "../Config/firebase";
+import Temp from "../test";
 
 interface Orders {
   orders: any;
@@ -69,13 +70,12 @@ const InputField: React.FC<InputProps> = ({ setData, setId }) => {
   const userData = async () => {
     const db = fireStore;
     let data = await addDoc(collection(db, "User"), {
-      Name: name,
-      RestaurantName: test.restaurantName,
-      Amount: amount,
-      Price: total,
-      TotalAmount: totalAmount,
-      ItemOrder: item,
-      Date: currDate,
+      name: name,
+      restaurantName: test.restaurantName,
+      givenAmount: amount,
+      orderAmount: totalAmount,
+      items: item,
+      createdAt: currDate,
     });
     return data?.id;
   };
@@ -236,6 +236,11 @@ const InputField: React.FC<InputProps> = ({ setData, setId }) => {
           </Paper>
         </Box>
       </div>
+      <br />
+      <div style={{ backgroundColor: "aqua" }}>
+        <Temp />
+      </div>
+      <br />
     </>
   );
 };

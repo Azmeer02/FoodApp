@@ -1,0 +1,275 @@
+{
+    "items": [
+        {
+            "restaurantName": "Al-Naz (Main)",
+            "id": 2,
+            "value": "Chicken Biryani (SMALL)",
+            "amount": 90
+        },
+        {
+            "restaurantName": "Al-Naz (Main)",
+            "id": 3,
+            "quantity": 1,
+            "value": "Chicken Biryani (MEDIUM)",
+            "amount": 130
+        },
+        {
+            "restaurantName": "Al-Naz (Main)",
+            "id": 4,
+            "value": "Chicken Biryani (LARGE)",
+            "amount": 160
+        },
+        {
+            "restaurantName": "Al-Naz (Main)",
+            "id": 5,
+            "value": "Plain Biryani (SMALL)",
+            "amount": 70
+        },
+        {
+            "restaurantName": "Al-Naz (Main)",
+            "id": 6,
+            "value": "Plain Biryani (MEDIUM)",
+            "amount": 110
+        },
+        {
+            "restaurantName": "Al-Naz (Main)",
+            "id": 7,
+            "value": "Plain Biryani (LARGE)",
+            "amount": 140
+        },
+        {
+            "restaurantName": "Al-Naz (Back)",
+            "id": 9,
+            "value": "Chicken Biryani (SMALL)",
+            "amount": 90
+        },
+        {
+            "restaurantName": "Al-Naz (Back)",
+            "id": 10,
+            "value": "Chicken Biryani (MEDIUM)",
+            "amount": 130
+        },
+        {
+            "restaurantName": "Al-Naz (Back)",
+            "id": 11,
+            "value": "Chicken Biryani (LARGE)",
+            "amount": 160
+        },
+        {
+            "restaurantName": "Al-Naz (Back)",
+            "id": 12,
+            "value": "Plain Biryani (SMALL)",
+            "amount": 60
+        },
+        {
+            "restaurantName": "Al-Naz (Back)",
+            "id": 13,
+            "value": "Plain Biryani (MEDIUM)",
+            "amount": 100
+        },
+        {
+            "restaurantName": "Al-Naz (Back)",
+            "id": 14,
+            "value": "Plain Biryani (LARGE)",
+            "amount": 120
+        },
+        {
+            "restaurantName": "Allah Wala Hotel",
+            "id": 16,
+            "value": "Chicken Pulao (SMALL)",
+            "amount": 90
+        },
+        {
+            "restaurantName": "Allah Wala Hotel",
+            "id": 17,
+            "value": "Chicken Pulao (MEDIUM)",
+            "amount": 120
+        },
+        {
+            "restaurantName": "Allah Wala Hotel",
+            "id": 18,
+            "value": "Chicken Pulao (LARGE)",
+            "amount": 160
+        },
+        {
+            "restaurantName": "Allah Wala Hotel",
+            "id": 19,
+            "value": "Plain Pulao (SMALL)",
+            "amount": 60
+        },
+        {
+            "restaurantName": "Allah Wala Hotel",
+            "id": 20,
+            "value": "Plain Pulao (MEDIUM)",
+            "amount": 100
+        },
+        {
+            "restaurantName": "Allah Wala Hotel",
+            "id": 21,
+            "value": "Plain Pulao (LARGE)",
+            "amount": 120
+        },
+        {
+            "restaurantName": "Hunger Station",
+            "id": 23,
+            "value": "Chicken Biryani (SMALL)",
+            "amount": 90
+        },
+        {
+            "restaurantName": "Hunger Station",
+            "id": 24,
+            "value": "Chicken Biryani (MEDIUM)",
+            "amount": 120
+        },
+        {
+            "restaurantName": "Hunger Station",
+            "id": 25,
+            "value": "Chicken Biryani (LARGE)",
+            "amount": 160
+        },
+        {
+            "restaurantName": "Hunger Station",
+            "id": 26,
+            "value": "Plain Biryani (SMALL)",
+            "amount": 60
+        },
+        {
+            "restaurantName": "Hunger Station",
+            "id": 27,
+            "value": "Plain Biryani (MEDIUM)",
+            "amount": 100
+        },
+        {
+            "restaurantName": "Hunger Station",
+            "id": 28,
+            "value": "Plain Biryani (LARGE)",
+            "amount": 120
+        },
+        {
+            "restaurantName": "Quetta Hotel",
+            "id": 30,
+            "value": "Paratha",
+            "amount": 30
+        },
+        {
+            "restaurantName": "Quetta Hotel",
+            "id": 31,
+            "value": "Alu Paratha",
+            "amount": 60
+        },
+        {
+            "restaurantName": "Quetta Hotel",
+            "id": 32,
+            "value": "Kebab Paratha",
+            "amount": 70
+        },
+        {
+            "restaurantName": "Quetta Hotel",
+            "id": 33,
+            "value": "Cheese Paratha",
+            "amount": 100
+        },
+        {
+            "restaurantName": "Others",
+            "id": 35,
+            "value": "Cholay (SMALL)",
+            "amount": 60
+        },
+        {
+            "restaurantName": "Others",
+            "id": 36,
+            "value": "Cholay (MEDIUM)",
+            "amount": 80
+        },
+        {
+            "restaurantName": "Others",
+            "id": 37,
+            "value": "Cholay (LARGE)",
+            "amount": 120
+        },
+        {
+            "restaurantName": "Others",
+            "id": 38,
+            "value": "Anda Gotala",
+            "amount": 100
+        },
+        {
+            "restaurantName": "Others",
+            "id": 39,
+            "value": "Chana Daal (SMALL)",
+            "amount": 60
+        },
+        {
+            "restaurantName": "Others",
+            "id": 40,
+            "value": "Chana Daal (MEDIUM)",
+            "amount": 80
+        },
+        {
+            "restaurantName": "Others",
+            "id": 41,
+            "value": "Chana Daal(LARGE)",
+            "amount": 120
+        },
+        {
+            "restaurantName": "Others",
+            "id": 42,
+            "value": "Karahi",
+            "amount": 120
+        },
+        {
+            "restaurantName": "Others",
+            "id": 43,
+            "value": "Kaleji",
+            "amount": 120
+        },
+        {
+            "restaurantName": "Others",
+            "id": 44,
+            "value": "Aaloo Qeema",
+            "amount": 120
+        },
+        {
+            "restaurantName": "Others",
+            "id": 45,
+            "value": "Maash Daal (SMALL)",
+            "amount": 60
+        },
+        {
+            "restaurantName": "Others",
+            "id": 46,
+            "value": "Maash Daal (MEDIUM)",
+            "amount": 80
+        },
+        {
+            "restaurantName": "Others",
+            "id": 47,
+            "value": "Maash Daal(LARGE)",
+            "amount": 120
+        },
+        {
+            "restaurantName": "Others",
+            "id": 48,
+            "value": "Aaloo Palak (SMALL)",
+            "amount": 60
+        },
+        {
+            "restaurantName": "Others",
+            "id": 49,
+            "value": "Aaloo Palak (MEDIUM)",
+            "amount": 80
+        },
+        {
+            "restaurantName": "Others",
+            "id": 50,
+            "value": "Aaloo Palak (LARGE)",
+            "amount": 120
+        },
+        {
+            "restaurantName": "Others",
+            "id": 51,
+            "value": "Daal Gotala",
+            "amount": 120
+        }
+    ]
+}
