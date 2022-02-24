@@ -69,19 +69,19 @@ const InputField: React.FC<InputProps> = ({ setData, setId }) => {
 
   const userData = async () => {
     let orderDet = {
-      name: name,
-      createdAt: currDate,
-      givenAmount: amount,
-      item: [
-        {
-          items: [test.restaurantName, totalAmount],
-        },
-      ],
+      //   name: name,
+      //   createdAt: currDate,
+      //   givenAmount: amount,
+      //   item: [
+      //     {
+      //       items: [test.restaurantName, totalAmount],
+      //     },
+      //   ],
       // test: test.restaurantName,
       // orderAmount: totalAmount,
     };
     const db = fireStore;
-    // let data = await addDoc(collection(db, "User"), orderDet);
+    let data = await addDoc(collection(db, "User"), orderDet);
     // return data?.id;
   };
 
@@ -246,7 +246,6 @@ const InputField: React.FC<InputProps> = ({ setData, setId }) => {
       <div style={{ backgroundColor: "aqua" }}>
         <Temp />
       </div>
-      <br />
     </>
   );
 };

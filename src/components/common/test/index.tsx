@@ -3,6 +3,8 @@ import { Select } from "antd";
 import { Form, Button, Input, Alert } from "antd";
 import { Box, Paper } from "@mui/material";
 import items from "../itemAPI.json";
+import { addDoc, collection } from "firebase/firestore";
+import fireStore from "../Config/firebase";
 import "./index.css";
 
 interface OrderItem {
@@ -17,11 +19,11 @@ interface OrderItems {
 
 const Temp = () => {
   const [selectedItems, setSelectedItems] = useState<OrderItems>();
-  const [amount, setAmount] = useState<number>(0);
-  const [total, setTotal] = useState<number>(0);
-  const [totalAmount, setTotalAmount] = useState<any>();
+  const [givenAmount, setGivenAmount] = useState<number>(0);
+  const [orderAmount, setOrderAmount] = useState<number>(0);
+  const [returnAmount, setReturnAmount] = useState<any>();
   const [alert, setAlert] = useState<boolean>(false);
-  console.log(total);
+  // console.log(selectedItems?.items);
 
   const staticOrderItems: OrderItems = items;
   const [form] = Form.useForm();
@@ -33,20 +35,27 @@ const Temp = () => {
 
   const onFormSubmit = () => {
     form.validateFields().then((values) => {
-      console.log("values", values);
+      values.givenAmount = givenAmount;
+      values.orderAmount = orderAmount;
+      values.returnAmount = returnAmount;
+      values.items = selectedItems?.items;
+      // console.log("values", values);
+      const db = fireStore;
+      let data = addDoc(collection(db, "User"), values);
+      console.log(data);
     });
   };
   useEffect(() => {
-    const returnCash = amount - total;
-    if (total === 0) {
+    const returnCash = givenAmount - orderAmount;
+    if (orderAmount === 0) {
       return;
-    } else if (amount >= total) {
-      setTotalAmount(returnCash);
+    } else if (givenAmount >= orderAmount) {
+      setReturnAmount(returnCash);
       setAlert(false);
     } else {
       setAlert(true);
     }
-  }, [total, amount]);
+  }, [orderAmount, givenAmount]);
 
   return (
     <>
@@ -113,15 +122,12 @@ const Temp = () => {
                   </Select.Option>
                 </Select>
               </Form.Item>
-              <Form.Item label="Order">
+              <Form.Item label="Order" name="items">
                 <Select
                   mode="multiple"
                   style={{ width: "100%" }}
                   placeholder="Select Restaurant & Order"
-                  onChange={(e, v) => {
-                    console.log("e", e);
-                    console.log("v", v);
-                    // setItem(v.map((id: any) => id.children));
+                  onChange={(e) => {
                     let selected: OrderItems = {
                       items: staticOrderItems?.items?.filter(
                         (item: OrderItem) => {
@@ -134,15 +140,15 @@ const Temp = () => {
                     selected.items.forEach((item: OrderItem) => {
                       sumOfOrderItemsPrice += item.amount;
                     });
-                    console.log(sumOfOrderItemsPrice);
-                    setTotal(sumOfOrderItemsPrice);
+                    // console.log(sumOfOrderItemsPrice);
+                    setOrderAmount(sumOfOrderItemsPrice);
                   }}
                 >
                   {unique.map((uni, idx) => (
                     <OptGroup key={idx} label={uni}>
                       {staticOrderItems.items
                         .filter((item: any) => item.restaurantName === uni)
-                        .map((item: any, itemIndex: number) => (
+                        .map((item: any) => (
                           <Option key={item.id} value={item.id}>
                             {`${uni} , ${item.value} , Rs.${item.amount}/-`}
                           </Option>
@@ -190,7 +196,7 @@ const Temp = () => {
                     selected.forEach((item: any) => {
                       price += item.prices;
                     });
-                    setTotal(price);
+                    setOrderAmount(price);
                   }}
                 >
                   {test?.items?.map((items: any) => {
@@ -203,13 +209,12 @@ const Temp = () => {
                 </Select>
               </Form.Item> */}
               <Form.Item
-                name="amount"
                 label="Cash u have"
                 rules={[{ required: true, message: "Please select Amount!" }]}
               >
                 <Input
                   onChange={(e) => {
-                    setAmount(+e.target.value);
+                    setGivenAmount(+e.target.value);
                   }}
                 />
               </Form.Item>
@@ -220,11 +225,11 @@ const Temp = () => {
                   style={{ marginTop: "5px" }}
                 ></Alert>
               )}
-              <Form.Item label="Total Item Cost">
-                <h2 className="price">{total}</h2>
+              <Form.Item label="Total Item Cost" name="orderAmount">
+                <h2 className="price">{orderAmount}</h2>
               </Form.Item>
-              <Form.Item label="Cash to Return">
-                <h2>{totalAmount}</h2>
+              <Form.Item label="Cash to Return" name="returnAmount">
+                <h2>{returnAmount}</h2>
               </Form.Item>
               <Form.Item>
                 <Button
