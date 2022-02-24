@@ -10,9 +10,10 @@ import "./index.css";
 interface OrderItem {
   restaurantName: string;
   id: number;
-  value: string;
+  dish: string;
   amount: number;
 }
+
 interface OrderItems {
   items: Array<OrderItem>;
 }
@@ -23,7 +24,7 @@ const Temp = () => {
   const [orderAmount, setOrderAmount] = useState<number>(0);
   const [returnAmount, setReturnAmount] = useState<any>();
   const [alert, setAlert] = useState<boolean>(false);
-  // console.log(selectedItems?.items);
+  const currDate = new Date();
 
   const staticOrderItems: OrderItems = items;
   const [form] = Form.useForm();
@@ -39,7 +40,7 @@ const Temp = () => {
       values.orderAmount = orderAmount;
       values.returnAmount = returnAmount;
       values.items = selectedItems?.items;
-      // console.log("values", values);
+      values.date = currDate;
       const db = fireStore;
       let data = addDoc(collection(db, "User"), values);
       console.log(data);
@@ -122,7 +123,13 @@ const Temp = () => {
                   </Select.Option>
                 </Select>
               </Form.Item>
-              <Form.Item label="Order" name="items">
+              <Form.Item
+                label="Order"
+                name="items"
+                rules={[
+                  { required: true, message: "Please select your Order!" },
+                ]}
+              >
                 <Select
                   mode="multiple"
                   style={{ width: "100%" }}
@@ -140,7 +147,6 @@ const Temp = () => {
                     selected.items.forEach((item: OrderItem) => {
                       sumOfOrderItemsPrice += item.amount;
                     });
-                    // console.log(sumOfOrderItemsPrice);
                     setOrderAmount(sumOfOrderItemsPrice);
                   }}
                 >
@@ -150,67 +156,18 @@ const Temp = () => {
                         .filter((item: any) => item.restaurantName === uni)
                         .map((item: any) => (
                           <Option key={item.id} value={item.id}>
-                            {`${uni} , ${item.value} , Rs.${item.amount}/-`}
+                            {`${uni} , ${item.dish} , Rs.${item.amount}/-`}
                           </Option>
                         ))}
                     </OptGroup>
                   ))}
                 </Select>
               </Form.Item>
-              {/* <Form.Item
-                name="restaurant"
-                label="Restaurant"
-                rules={[
-                  { required: true, message: "Please select Restaurant!" },
-                ]}
-              >
-                <Select onChange={onRestaurantChange}>
-                  {(staticOrderItems.orders || []).map((res: any) => {
-                    return (
-                      <Select.Option
-                        key={res.id}
-                        name="restaurantName"
-                        value={res.id}
-                      >
-                        {res.restaurantName}
-                      </Select.Option>
-                    );
-                  })}
-                </Select>
-              </Form.Item>
-              <Form.Item
-                name="items"
-                label="Items"
-                rules={[{ required: true, message: "Please select Items!" }]}
-              >
-                <Select
-                  mode="tags"
-                  style={{ width: "100%" }}
-                  tokenSeparators={[","]}
-                  onChange={(e, v) => {
-                    setItem(v.map((hehe: any) => hehe.children));
-                    let selected = test?.items?.filter((i: any) => {
-                      return e.includes(i.id.toString());
-                    });
-                    let price = 0;
-                    selected.forEach((item: any) => {
-                      price += item.prices;
-                    });
-                    setOrderAmount(price);
-                  }}
-                >
-                  {test?.items?.map((items: any) => {
-                    return (
-                      <Option
-                        key={items.id}
-                      >{`${items.name} Rs. ${items.prices}/-`}</Option>
-                    );
-                  })}
-                </Select>
-              </Form.Item> */}
               <Form.Item
                 label="Cash u have"
-                rules={[{ required: true, message: "Please select Amount!" }]}
+                rules={[
+                  { required: true, message: "Please select your Username!" },
+                ]}
               >
                 <Input
                   onChange={(e) => {
@@ -244,38 +201,6 @@ const Temp = () => {
           </Paper>
         </Box>
       </div>
-      {/* <Form layout="horizontal" className="form" form={form}>
-      <Select
-        mode="multiple"
-        style={{ width: "100%" }}
-        placeholder="select one country"
-        onChange={handleChange}
-      >
-        {unique.map((uni, idx) => (
-          <OptGroup key={idx} label={uni}>
-            {staticOrderItems.items
-              .filter((item: any) => item.restaurantName === uni)
-              .map((item: any, itemIndex: number) => (
-                <Option
-                  key={`${itemIndex}_${item.restaurantName}`}
-                  value={item.value}
-                >
-                  {`${item.value} , Rs.${item.amount}/-`}
-                </Option>
-              ))}
-          </OptGroup>
-        ))}
-      </Select>
-      <Form.Item>
-        <Button
-          htmlType="submit"
-          onClick={onFormSubmit}
-          style={{ float: "right" }}
-        >
-          Place Order
-        </Button>
-      </Form.Item>
-      </Form> */}
     </>
   );
 };
