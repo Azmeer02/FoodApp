@@ -1,22 +1,21 @@
-{
-    "items": [
-        {
+[
+    {
             "restaurantName": "Al-Naz (Main)",
-            "id": 2,
-            "value": "Chicken Biryani (SMALL)",
-            "amount": 90
+            "id": 5,
+            "value": "Plain Biryani (SMALL)",
+            "amount": 70
         },
         {
             "restaurantName": "Al-Naz (Main)",
-            "id": 3,
-            "value": "Chicken Biryani (MEDIUM)",
-            "amount": 130
+            "id": 6,
+            "value": "Plain Biryani (MEDIUM)",
+            "amount": 110
         },
         {
             "restaurantName": "Al-Naz (Main)",
-            "id": 4,
-            "value": "Chicken Biryani (LARGE)",
-            "amount": 160
+            "id": 7,
+            "value": "Plain Biryani (LARGE)",
+            "amount": 140
         },
         {
             "restaurantName": "Al-Naz (Back)",
@@ -251,6 +250,4 @@
             "id": 51,
             "value": "Daal Gotala",
             "amount": 120
-        }
-    ]
-}
+        }]

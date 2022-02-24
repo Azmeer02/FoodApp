@@ -41,7 +41,7 @@ const InputField: React.FC<InputProps> = ({ setData, setId }) => {
       values.item = item;
       values.totalAmount = totalAmount;
       setData(values);
-      userData().then((data) => navigate(`/order-page?orderId=${data}`));
+      // userData().then((data) => navigate(`/order-page?orderId=${data}`));
     });
   };
 
@@ -68,16 +68,21 @@ const InputField: React.FC<InputProps> = ({ setData, setId }) => {
   /* Firebase Initialization*/
 
   const userData = async () => {
-    const db = fireStore;
-    let data = await addDoc(collection(db, "User"), {
+    let orderDet = {
       name: name,
-      restaurantName: test.restaurantName,
-      givenAmount: amount,
-      orderAmount: totalAmount,
-      items: item,
       createdAt: currDate,
-    });
-    return data?.id;
+      givenAmount: amount,
+      item: [
+        {
+          items: [test.restaurantName, totalAmount],
+        },
+      ],
+      // test: test.restaurantName,
+      // orderAmount: totalAmount,
+    };
+    const db = fireStore;
+    // let data = await addDoc(collection(db, "User"), orderDet);
+    // return data?.id;
   };
 
   return (
@@ -179,8 +184,10 @@ const InputField: React.FC<InputProps> = ({ setData, setId }) => {
                   style={{ width: "100%" }}
                   tokenSeparators={[","]}
                   onChange={(e, v) => {
+                    console.log(v);
                     setItem(v.map((hehe: any) => hehe.children));
                     let selected = test?.items?.filter((i: any) => {
+                      console.log(i);
                       return e.includes(i.id.toString());
                     });
                     let price = 0;
@@ -216,7 +223,6 @@ const InputField: React.FC<InputProps> = ({ setData, setId }) => {
                   style={{ marginTop: "5px" }}
                 ></Alert>
               )}
-
               <Form.Item label="Total Item Cost">
                 <h2 className="price">{total}</h2>
               </Form.Item>
