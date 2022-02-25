@@ -29,13 +29,12 @@ const Dashboard: React.FC<InputProps> = ({ data, id }: any) => {
   // const orderId = new URLSearchParams(window.location.search).get("orderId");
   // const [orders, setOrders] = useState<any>(null);
   const [allOrders, setAllOrders] = useState<any>(null);
-  console.log("data=", data);
 
   /* For Specific User */
   // useEffect(() => {
   //   const userData = async () => {
   //     const fs = fireStore;
-  //     const docRef = doc(fs, "User", `${orderId}`);
+  //     const docRef = doc(fs, "Orders", `${orderId}`);
   //     const docSnap = await getDoc(docRef);
   //     setOrders(docSnap.data());
   //   };
@@ -46,7 +45,7 @@ const Dashboard: React.FC<InputProps> = ({ data, id }: any) => {
   useEffect(() => {
     const allData = async () => {
       const fs = fireStore;
-      const q = query(collection(fs, "User"));
+      const q = query(collection(fs, "Orders"));
       await onSnapshot(q, (querySnapshot) => {
         const foods: any = [];
         querySnapshot.forEach((doc) => {
@@ -67,18 +66,17 @@ const Dashboard: React.FC<InputProps> = ({ data, id }: any) => {
         </div>
       </div>
       <div className="dashboard">
-        {(allOrders || []).map((item: any) => {
-          console.log("allOrders", allOrders);
+        {(allOrders || []).map((item: any, index: number) => {
           return (
-            <Paper elevation={8} className="order-paper" key={item}>
+            <Paper elevation={8} className="order-paper" key={index}>
               <Card className="card" title={item?.name} bordered={true}>
                 <p>
                   <b className="order-label">{item?.name} Order: </b>
                   <u>
                     <b className="order-list">
-                      {item?.items.map((res: any) => {
+                      {item?.items.map((res: any, index: number) => {
                         return (
-                          <div>
+                          <div key={index}>
                             <li>{`${res.restaurantName} : ${res?.dish},`}</li>
                           </div>
                         );
@@ -89,13 +87,13 @@ const Dashboard: React.FC<InputProps> = ({ data, id }: any) => {
                 <p>
                   <b className="order-label">Total Order Cost: </b>
                   <u>
-                    <b className="order-list">{item?.givenAmount}</b>
+                    <b className="order-list">{data?.orderAmount}</b>
                   </u>
                 </p>
                 <p>
                   <b className="order-label">Amount {item?.name} have: </b>
                   <u>
-                    <b className="order-list">{data?.orderAmount}</b>
+                    <b className="order-list">{item?.givenAmount}</b>
                   </u>
                 </p>
                 <p>

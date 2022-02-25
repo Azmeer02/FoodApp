@@ -73,40 +73,58 @@
             "amount": 120
         },
         {
-            "restaurantName": "Allah Wala Hotel",
+            "restaurantName": "A-One Restaurant",
             "id": 16,
             "dish": "Chicken Pulao (SMALL)",
             "amount": 90
         },
         {
-            "restaurantName": "Allah Wala Hotel",
+            "restaurantName": "A-One Restaurant",
             "id": 17,
             "dish": "Chicken Pulao (MEDIUM)",
             "amount": 120
         },
         {
-            "restaurantName": "Allah Wala Hotel",
+            "restaurantName": "A-One Restaurant",
             "id": 18,
             "dish": "Chicken Pulao (LARGE)",
             "amount": 160
         },
         {
-            "restaurantName": "Allah Wala Hotel",
+            "restaurantName": "A-One Restaurant",
             "id": 19,
             "dish": "Plain Pulao (SMALL)",
             "amount": 60
         },
         {
-            "restaurantName": "Allah Wala Hotel",
+            "restaurantName": "A-One Restaurant",
             "id": 20,
             "dish": "Plain Pulao (MEDIUM)",
             "amount": 100
         },
         {
-            "restaurantName": "Allah Wala Hotel",
+            "restaurantName": "A-One Restaurant",
             "id": 21,
             "dish": "Plain Pulao (LARGE)",
             "amount": 120
+        },
+        {
+            "restaurantName": "A-One Restaurant",
+            "id": 56,
+            "dish": "Chicken Biryani (SMALL)",
+            "amount": 120
+        },
+        {
+            "restaurantName": "A-One Restaurant",
+            "id": 57,
+            "dish": "Chicken Biryani (MEDIUM)",
+            "amount": 140
+        },
+        {
+            "restaurantName": "A-One Restaurant",
+            "id": 58,
+            "dish": "Chicken Biryani (LARGE)",
+            "amount": 160
         },
         {
             "restaurantName": "Hunger Station",
@@ -269,6 +287,30 @@
             "id": 51,
             "dish": "Daal Gotala",
             "amount": 120
+        },
+        {
+            "restaurantName": "Side-Items",
+            "id": 52,
+            "dish": "Tandoori",
+            "amount": 15
+        },
+        {
+            "restaurantName": "Side-Items",
+            "id": 53,
+            "dish": "Chapati",
+            "amount": 10
+        },
+        {
+            "restaurantName": "Side-Items",
+            "id": 54,
+            "dish": "Raita",
+            "amount": 30
+        },
+        {
+            "restaurantName": "Side-Items",
+            "id": 55,
+            "dish": "Salad",
+            "amount": 30
         }
     ]
 }

@@ -55,7 +55,7 @@ const InputField: React.FC<InputProps> = ({ setData, setId }) => {
       values.items = selectedItems?.items;
       values.date = currDate;
       const db = fireStore;
-      addDoc(collection(db, "User"), values)
+      addDoc(collection(db, "Orders"), values)
         .then((values: any) => {
           values.returnAmount = returnAmount;
           values.orderAmount = orderAmount;
@@ -184,7 +184,10 @@ const InputField: React.FC<InputProps> = ({ setData, setId }) => {
                           .filter((item: any) => item.restaurantName === uni)
                           .map((item: any) => (
                             <Option key={item.id} value={item.id}>
-                              {`${uni} , ${item.dish} , Rs.${item.amount}/-`}
+                              {`${uni} : ${item.dish} ,`}
+                              <span
+                                style={{ float: "right" }}
+                              >{`Rs.${item.amount}/-`}</span>
                             </Option>
                           ))}
                       </OptGroup>
