@@ -1,11 +1,14 @@
 import React, { useEffect, useState } from "react";
-import "./index.css";
+
 import { Card } from "antd";
 import { Paper } from "@mui/material";
+
 import "firebase/firestore";
 import fireStore from "../Config/firebase";
-// import { doc, getDoc } from "firebase/firestore";
 import { onSnapshot, query, collection } from "firebase/firestore";
+
+import "./index.css";
+// import { doc, getDoc } from "firebase/firestore";
 
 interface Props {
   name: string;
@@ -26,7 +29,7 @@ const Dashboard: React.FC<InputProps> = ({ data, id }: any) => {
   // const orderId = new URLSearchParams(window.location.search).get("orderId");
   // const [orders, setOrders] = useState<any>(null);
   const [allOrders, setAllOrders] = useState<any>(null);
-  console.log("allOrders", allOrders);
+  console.log("data=", data);
 
   /* For Specific User */
   // useEffect(() => {
@@ -76,7 +79,7 @@ const Dashboard: React.FC<InputProps> = ({ data, id }: any) => {
                       {item?.items.map((res: any) => {
                         return (
                           <div>
-                            <li>{`${res.restaurantName}:${res?.dish},`}</li>
+                            <li>{`${res.restaurantName} : ${res?.dish},`}</li>
                           </div>
                         );
                       })}
@@ -92,13 +95,13 @@ const Dashboard: React.FC<InputProps> = ({ data, id }: any) => {
                 <p>
                   <b className="order-label">Amount {item?.name} have: </b>
                   <u>
-                    <b className="order-list">{item?.orderAmount}</b>
+                    <b className="order-list">{data?.orderAmount}</b>
                   </u>
                 </p>
                 <p>
                   <b className="order-label">Amount To Return: </b>
                   <u>
-                    <b className="order-list">{item?.returnAmount}</b>
+                    <b className="order-list">{data?.returnAmount}</b>
                   </u>
                 </p>
               </Card>
