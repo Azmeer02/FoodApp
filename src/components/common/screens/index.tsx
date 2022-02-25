@@ -74,7 +74,7 @@ const Dashboard: React.FC<InputProps> = ({ data, id }: any) => {
                   <b className="order-label">{item?.name} Order: </b>
                   <u>
                     <b className="order-list">
-                      {item?.items.map((res: any, index: number) => {
+                      {(item?.items || []).map((res: any, index: number) => {
                         return (
                           <div key={index}>
                             <li>{`${res.restaurantName} : ${res?.dish},`}</li>
