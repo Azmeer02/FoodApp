@@ -184,7 +184,7 @@ const InputField: React.FC<InputProps> = ({ setData, setId }) => {
                           .filter((item: any) => item.restaurantName === uni)
                           .map((item: any) => (
                             <Option key={item.id} value={item.id}>
-                              {`${uni} : ${item.dish} ,`}
+                              {`${uni} : ${item.dish} , `}
                               <span
                                 style={{ float: "right" }}
                               >{`Rs.${item.amount}/-`}</span>

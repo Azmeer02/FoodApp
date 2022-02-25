@@ -8,6 +8,7 @@ import fireStore from "../Config/firebase";
 import { onSnapshot, query, collection } from "firebase/firestore";
 
 import "./index.css";
+import { TypePredicateKind } from "typescript";
 // import { doc, getDoc } from "firebase/firestore";
 
 interface Props {
@@ -57,6 +58,15 @@ const Dashboard: React.FC<InputProps> = ({ data, id }: any) => {
     allData();
   }, []);
 
+  const calcTotalCost = (items: any) => {
+    let sumOfAmount = 0;
+    items.forEach((price: any) => {
+      let sumOfPrice = price.amount;
+      sumOfAmount += sumOfPrice;
+    });
+    return sumOfAmount;
+  };
+
   return (
     <>
       <div className="navigation">
@@ -77,7 +87,7 @@ const Dashboard: React.FC<InputProps> = ({ data, id }: any) => {
                       {(item?.items || []).map((res: any, index: number) => {
                         return (
                           <div key={index}>
-                            <li>{`${res.restaurantName} : ${res?.dish},`}</li>
+                            <li>{`${res.restaurantName} : ${res?.dish}`}</li>
                           </div>
                         );
                       })}
@@ -87,7 +97,7 @@ const Dashboard: React.FC<InputProps> = ({ data, id }: any) => {
                 <p>
                   <b className="order-label">Total Order Cost: </b>
                   <u>
-                    <b className="order-list">{data?.orderAmount}</b>
+                    <b className="order-list">{calcTotalCost(item?.items)}</b>
                   </u>
                 </p>
                 <p>
@@ -99,7 +109,10 @@ const Dashboard: React.FC<InputProps> = ({ data, id }: any) => {
                 <p>
                   <b className="order-label">Amount To Return: </b>
                   <u>
-                    <b className="order-list">{data?.returnAmount}</b>
+                    <b className="order-list">
+                      {" "}
+                      {item?.givenAmount - calcTotalCost(item?.items)}
+                    </b>
                   </u>
                 </p>
               </Card>
