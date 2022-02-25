@@ -1,13 +1,18 @@
 import React, { useState, useEffect } from "react";
-import { Select } from "antd";
-import { Form, Button, Input, Alert } from "antd";
+
+import { Form, Button, Input, Alert, Select, Spin } from "antd";
+import "antd/dist/antd.css";
+
 import { Box, Paper } from "@mui/material";
-import items from "../itemAPI.json";
-import Header from "../header/index";
-import { useNavigate } from "react-router-dom";
+
 import { addDoc, collection } from "firebase/firestore";
 import fireStore from "../Config/firebase";
-import "antd/dist/antd.css";
+
+import { useNavigate } from "react-router-dom";
+
+import items from "../itemAPI.json";
+import Header from "../header/index";
+
 import "./index.css";
 
 interface OrderItem {
@@ -40,6 +45,7 @@ const InputField: React.FC<InputProps> = ({ setData, setId }) => {
   const [returnAmount, setReturnAmount] = useState<any>();
   const [allFormValues, setAllFormValues] = useState<FormValues>();
   const [alert, setAlert] = useState<boolean>(false);
+  const [loading, setLoading] = useState<boolean>(false);
   const currDate = new Date();
 
   const staticOrderItems: OrderItems = items;
@@ -62,6 +68,7 @@ const InputField: React.FC<InputProps> = ({ setData, setId }) => {
       setAllFormValues(values);
       setData(values);
       userData().then((data) => navigate(`/order-page`));
+      console.log(allFormValues);
     });
   };
 
@@ -99,6 +106,7 @@ const InputField: React.FC<InputProps> = ({ setData, setId }) => {
           >
             <h1 className="order">Place Your Order Here...</h1>
             <Form layout="horizontal" className="form" form={form}>
+              {/* <Spin spinning={loading}> */}
               <Form.Item
                 name="name"
                 label="Select User"
@@ -221,12 +229,17 @@ const InputField: React.FC<InputProps> = ({ setData, setId }) => {
               <Form.Item>
                 <Button
                   htmlType="submit"
-                  onClick={onFormSubmit}
                   style={{ float: "right" }}
+                  onClick={() => {
+                    onFormSubmit();
+                    setLoading(true);
+                    // setLoading((allFormValues) => !allFormValues);
+                  }}
                 >
                   Place Order
                 </Button>
               </Form.Item>
+              {/* </Spin> */}
             </Form>
           </Paper>
         </Box>
