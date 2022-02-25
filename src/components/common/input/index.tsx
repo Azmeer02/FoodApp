@@ -1,17 +1,24 @@
-import React, { useState } from "react";
-import Header from "../header/index";
-import "antd/dist/antd.css";
-import { Form, Select, Button, Input, Alert } from "antd";
+import React, { useState, useEffect } from "react";
+import { Select } from "antd";
+import { Form, Button, Input, Alert } from "antd";
 import { Box, Paper } from "@mui/material";
-import Orders from "../localAPI.json";
-import "./index.css";
+import items from "../itemAPI.json";
+import Header from "../header/index";
 import { useNavigate } from "react-router-dom";
 import { addDoc, collection } from "firebase/firestore";
 import fireStore from "../Config/firebase";
-import Temp from "../test";
+import "antd/dist/antd.css";
+import "./index.css";
 
-interface Orders {
-  orders: any;
+interface OrderItem {
+  restaurantName: string;
+  id: number;
+  dish: string;
+  amount: number;
+}
+
+interface OrderItems {
+  items: Array<OrderItem>;
 }
 
 type InputProps = {
@@ -19,70 +26,63 @@ type InputProps = {
   setId: CallableFunction;
 };
 
+type FormValues = {
+  date: Date;
+  givenAmount: number;
+  items: Array<OrderItem>;
+  name: string;
+};
+
 const InputField: React.FC<InputProps> = ({ setData, setId }) => {
-  const [name, setName] = useState<string>("");
-  const [test, setTest] = useState<any>(null);
-  const [total, setTotal] = useState<any>([]);
-  const [item, setItem] = useState<any>();
-  const [amount, setAmount] = useState<any>();
-  const [totalAmount, setTotalAmount] = useState<any>();
+  const [selectedItems, setSelectedItems] = useState<OrderItems>();
+  const [givenAmount, setGivenAmount] = useState<number>(0);
+  const [orderAmount, setOrderAmount] = useState<number>(0);
+  const [returnAmount, setReturnAmount] = useState<any>();
+  const [allFormValues, setAllFormValues] = useState<FormValues>();
   const [alert, setAlert] = useState<boolean>(false);
   const currDate = new Date();
 
-  const newOrders: Orders = Orders;
-  const { Option } = Select;
+  const staticOrderItems: OrderItems = items;
   const [form] = Form.useForm();
+  const { Option, OptGroup } = Select;
   let navigate = useNavigate();
 
-  const onFormSubmit = () => {
-    form.validateFields().then((values) => {
-      console.log("values = ", values);
-      values.price = total;
-      values.item = item;
-      values.totalAmount = totalAmount;
+  const unique = Array.from(
+    new Set(staticOrderItems.items.map((res: any) => res.restaurantName))
+  ).map((value: any) => value);
+
+  const onFormSubmit = async () => {
+    form.validateFields().then(async (values) => {
+      values.givenAmount = givenAmount;
+      values.items = selectedItems?.items;
+      values.date = currDate;
+      values.orderAmount = orderAmount;
+      values.returnAmount = returnAmount;
+      console.log("values=", values);
+      setAllFormValues(values);
       setData(values);
-      // userData().then((data) => navigate(`/order-page?orderId=${data}`));
+      userData().then((data) => navigate(`/order-page`));
     });
   };
 
-  const returnAmount = () => {
-    const returnCash = amount - total;
-    if (amount >= total) {
-      setTotalAmount(returnCash);
+  useEffect(() => {
+    const returnCash = givenAmount - orderAmount;
+    if (orderAmount === 0) {
+      return;
+    } else if (givenAmount >= orderAmount) {
+      setReturnAmount(returnCash);
       setAlert(false);
     } else {
       setAlert(true);
     }
-  };
-
-  const onRestaurantChange = (value: any, match: any) => {
-    const foundRestaurant = newOrders.orders.find(
-      (res: any) => +res.id === +value
-    );
-    setTest(foundRestaurant);
-    form.setFieldsValue({
-      ["restaurant"]: match.children,
-    });
-  };
-
-  /* Firebase Initialization*/
+  }, [orderAmount, givenAmount]);
 
   const userData = async () => {
-    let orderDet = {
-      //   name: name,
-      //   createdAt: currDate,
-      //   givenAmount: amount,
-      //   item: [
-      //     {
-      //       items: [test.restaurantName, totalAmount],
-      //     },
-      //   ],
-      // test: test.restaurantName,
-      // orderAmount: totalAmount,
-    };
+    // let orderDet = { allFormValues };
+    console.log("allFormValues", allFormValues);
     const db = fireStore;
-    let data = await addDoc(collection(db, "User"), orderDet);
-    // return data?.id;
+    let data = await addDoc(collection(db, "User"), allFormValues);
+    return data;
   };
 
   return (
@@ -106,7 +106,7 @@ const InputField: React.FC<InputProps> = ({ setData, setId }) => {
                   { required: true, message: "Please select your Username!" },
                 ]}
               >
-                <Select onChange={setName}>
+                <Select>
                   <Select.Option value="Mohsin Ghani">
                     Mohsin Ghani
                   </Select.Option>
@@ -154,66 +154,55 @@ const InputField: React.FC<InputProps> = ({ setData, setId }) => {
                 </Select>
               </Form.Item>
               <Form.Item
-                name="restaurant"
-                label="Restaurant"
+                label="Order"
+                name="items"
                 rules={[
-                  { required: true, message: "Please select Restaurant!" },
+                  { required: true, message: "Please select your Order!" },
                 ]}
               >
-                <Select onChange={onRestaurantChange}>
-                  {(newOrders.orders || []).map((res: any) => {
-                    return (
-                      <Select.Option
-                        key={res.id}
-                        name="restaurantName"
-                        value={res.id}
-                      >
-                        {res.restaurantName}
-                      </Select.Option>
-                    );
-                  })}
-                </Select>
-              </Form.Item>
-              <Form.Item
-                name="items"
-                label="Items"
-                rules={[{ required: true, message: "Please select Items!" }]}
-              >
                 <Select
-                  mode="tags"
+                  mode="multiple"
                   style={{ width: "100%" }}
-                  tokenSeparators={[","]}
-                  onChange={(e, v) => {
-                    console.log(v);
-                    setItem(v.map((hehe: any) => hehe.children));
-                    let selected = test?.items?.filter((i: any) => {
-                      console.log(i);
-                      return e.includes(i.id.toString());
+                  placeholder="Select Restaurant & Order"
+                  onChange={(e) => {
+                    let selected: OrderItems = {
+                      items: staticOrderItems?.items?.filter(
+                        (item: OrderItem) => {
+                          return e.includes(item.id);
+                        }
+                      ),
+                    };
+                    setSelectedItems(selected);
+                    let sumOfOrderItemsPrice = 0;
+                    selected.items.forEach((item: OrderItem) => {
+                      sumOfOrderItemsPrice += item.amount;
                     });
-                    let price = 0;
-                    selected.forEach((item: any) => {
-                      price += item.prices;
-                    });
-                    setTotal(price);
+                    setOrderAmount(sumOfOrderItemsPrice);
                   }}
                 >
-                  {test?.items?.map((items: any) => {
-                    return (
-                      <Option
-                        key={items.id}
-                      >{`${items.name} Rs. ${items.prices}/-`}</Option>
-                    );
-                  })}
+                  {unique.map((uni, idx) => (
+                    <OptGroup key={idx} label={uni}>
+                      {staticOrderItems.items
+                        .filter((item: any) => item.restaurantName === uni)
+                        .map((item: any) => (
+                          <Option key={item.id} value={item.id}>
+                            {`${uni} , ${item.dish} , Rs.${item.amount}/-`}
+                          </Option>
+                        ))}
+                    </OptGroup>
+                  ))}
                 </Select>
               </Form.Item>
               <Form.Item
-                name="amount"
                 label="Cash u have"
-                rules={[{ required: true, message: "Please select Amount!" }]}
+                rules={[
+                  { required: true, message: "Please select your Username!" },
+                ]}
               >
                 <Input
-                  onChange={(e) => setAmount(e.target.value)}
-                  onBlur={returnAmount}
+                  onChange={(e) => {
+                    setGivenAmount(+e.target.value);
+                  }}
                 />
               </Form.Item>
               {alert && (
@@ -224,10 +213,10 @@ const InputField: React.FC<InputProps> = ({ setData, setId }) => {
                 ></Alert>
               )}
               <Form.Item label="Total Item Cost">
-                <h2 className="price">{total}</h2>
+                <h2 className="price">{orderAmount}</h2>
               </Form.Item>
               <Form.Item label="Cash to Return">
-                <h2>{totalAmount}</h2>
+                <h2>{returnAmount}</h2>
               </Form.Item>
               <Form.Item>
                 <Button
@@ -241,10 +230,6 @@ const InputField: React.FC<InputProps> = ({ setData, setId }) => {
             </Form>
           </Paper>
         </Box>
-      </div>
-      <br />
-      <div style={{ backgroundColor: "aqua" }}>
-        <Temp />
       </div>
     </>
   );

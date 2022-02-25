@@ -13,9 +13,17 @@ interface Props {
   id: string;
 }
 
+// interface Props {
+//   restaurantName: string;
+//   id: number;
+//   dish: string;
+//   amount: number;
+// }
+
 const App: React.FC = () => {
   const [data, setData] = useState<Props | null>(null);
   const [id, setId] = useState<Props | null>(null);
+
   return (
     <div className="App">
       <Router>
@@ -28,6 +36,7 @@ const App: React.FC = () => {
             path="order-page"
             element={<Dashboard data={data} id={id} />}
           />
+          {/* <Route path="/" element={<Temp setData={setData} setId={setId} />} /> */}
         </Routes>
       </Router>
     </div>

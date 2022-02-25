@@ -4,7 +4,7 @@ import { Card } from "antd";
 import { Paper } from "@mui/material";
 import "firebase/firestore";
 import fireStore from "../Config/firebase";
-import { doc, getDoc } from "firebase/firestore";
+// import { doc, getDoc } from "firebase/firestore";
 import { onSnapshot, query, collection } from "firebase/firestore";
 
 interface Props {
@@ -23,27 +23,28 @@ type InputProps = {
 };
 
 const Dashboard: React.FC<InputProps> = ({ data, id }: any) => {
-  const orderId = new URLSearchParams(window.location.search).get("orderId");
-  const [orders, setOrders] = useState<any>(null);
+  // const orderId = new URLSearchParams(window.location.search).get("orderId");
+  // const [orders, setOrders] = useState<any>(null);
   const [allOrders, setAllOrders] = useState<any>(null);
+  console.log("allOrders", allOrders);
 
   /* For Specific User */
-  useEffect(() => {
-    const userData = async () => {
-      const fs = fireStore;
-      const docRef = doc(fs, "User", `${orderId}`);
-      const docSnap = await getDoc(docRef);
-      setOrders(docSnap.data());
-    };
-    userData();
-  }, [orderId]);
+  // useEffect(() => {
+  //   const userData = async () => {
+  //     const fs = fireStore;
+  //     const docRef = doc(fs, "User", `${orderId}`);
+  //     const docSnap = await getDoc(docRef);
+  //     setOrders(docSnap.data());
+  //   };
+  //   userData();
+  // }, [orderId]);
 
   /* For Whole Collection */
   useEffect(() => {
     const allData = async () => {
       const fs = fireStore;
       const q = query(collection(fs, "User"));
-      const unsubscribe = await onSnapshot(q, (querySnapshot) => {
+      await onSnapshot(q, (querySnapshot) => {
         const foods: any = [];
         querySnapshot.forEach((doc) => {
           foods.push(doc.data());
@@ -63,47 +64,47 @@ const Dashboard: React.FC<InputProps> = ({ data, id }: any) => {
         </div>
       </div>
       <div className="dashboard">
-        {allOrders &&
-          Object.entries(allOrders).map((item: any) => {
-            return (
-              <Paper elevation={8} className="order-paper" key={item}>
-                <Card className="card" title={item?.[1]?.Name} bordered={true}>
-                  <p>
-                    <b className="order-label">Restaurant Name: </b>
-                    <u>
-                      <b className="order-list">{item?.[1]?.RestaurantName}</b>
-                    </u>
-                  </p>
-                  <p>
-                    <b className="order-label">{item?.[1]?.Name} Order: </b>
-                    <u>
-                      <b className="order-list">{item?.[1]?.ItemOrder}</b>
-                    </u>
-                  </p>
-                  <p>
-                    <b className="order-label">Total Order Cost: </b>
-                    <u>
-                      <b className="order-list">{item?.[1]?.Price}</b>
-                    </u>
-                  </p>
-                  <p>
-                    <b className="order-label">
-                      Amount {item?.[1]?.Name} have:{" "}
+        {(allOrders || []).map((item: any) => {
+          console.log("allOrders", allOrders);
+          return (
+            <Paper elevation={8} className="order-paper" key={item}>
+              <Card className="card" title={item?.name} bordered={true}>
+                <p>
+                  <b className="order-label">{item?.name} Order: </b>
+                  <u>
+                    <b className="order-list">
+                      {item?.items.map((res: any) => {
+                        return (
+                          <div>
+                            <li>{`${res.restaurantName}:${res?.dish},`}</li>
+                          </div>
+                        );
+                      })}
                     </b>
-                    <u>
-                      <b className="order-list">{item?.[1]?.Amount}</b>
-                    </u>
-                  </p>
-                  <p>
-                    <b className="order-label">Amount To Return: </b>
-                    <u>
-                      <b className="order-list">{item?.[1]?.TotalAmount}</b>
-                    </u>
-                  </p>
-                </Card>
-              </Paper>
-            );
-          })}
+                  </u>
+                </p>
+                <p>
+                  <b className="order-label">Total Order Cost: </b>
+                  <u>
+                    <b className="order-list">{item?.givenAmount}</b>
+                  </u>
+                </p>
+                <p>
+                  <b className="order-label">Amount {item?.name} have: </b>
+                  <u>
+                    <b className="order-list">{item?.orderAmount}</b>
+                  </u>
+                </p>
+                <p>
+                  <b className="order-label">Amount To Return: </b>
+                  <u>
+                    <b className="order-list">{item?.returnAmount}</b>
+                  </u>
+                </p>
+              </Card>
+            </Paper>
+          );
+        })}
       </div>
     </>
   );

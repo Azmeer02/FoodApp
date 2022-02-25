@@ -19,6 +19,24 @@
             "amount": 160
         },
         {
+            "restaurantName": "Al-Naz (Main)",
+            "id": 5,
+            "dish": "Plain Biryani (SMALL)",
+            "amount": 70
+        },
+        {
+            "restaurantName": "Al-Naz (Main)",
+            "id": 6,
+            "dish": "Plain Biryani (MEDIUM)",
+            "amount": 110
+        },
+        {
+            "restaurantName": "Al-Naz (Main)",
+            "id": 7,
+            "dish": "Plain Biryani (LARGE)",
+            "amount": 140
+        },
+        {
             "restaurantName": "Al-Naz (Back)",
             "id": 9,
             "dish": "Chicken Biryani (SMALL)",
