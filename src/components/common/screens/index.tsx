@@ -8,7 +8,6 @@ import fireStore from "../Config/firebase";
 import { onSnapshot, query, collection } from "firebase/firestore";
 
 import "./index.css";
-import { TypePredicateKind } from "typescript";
 // import { doc, getDoc } from "firebase/firestore";
 
 interface Props {
