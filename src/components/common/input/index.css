@@ -47,3 +47,12 @@
 .price {
   font-weight: 600;
 }
+
+.increment-button {
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.ant-row {
+  justify-content: center;
+}

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 
-import { Form, Button, Input, Alert, Select, Spin } from "antd";
+import { Form, Button, Input, Alert, Select, Spin, List, Card } from "antd";
+import { PlusCircleOutlined } from "@ant-design/icons";
 import "antd/dist/antd.css";
 
 import { Box, Paper } from "@mui/material";
@@ -20,6 +21,7 @@ interface OrderItem {
   id: number;
   dish: string;
   amount: number;
+  quantity: number;
 }
 
 interface OrderItems {
@@ -35,7 +37,8 @@ const InputField: React.FC<InputProps> = ({ setData, setId }) => {
   const [selectedItems, setSelectedItems] = useState<OrderItems>();
   const [givenAmount, setGivenAmount] = useState<number>(0);
   const [orderAmount, setOrderAmount] = useState<number>(0);
-  const [returnAmount, setReturnAmount] = useState<any>();
+  const [returnAmount, setReturnAmount] = useState<number>();
+  const [quantity, setQuantity] = useState<number>(1);
   const [alert, setAlert] = useState<boolean>(false);
   const [loading, setLoading] = useState<boolean>(false);
   const currDate = new Date();
@@ -68,8 +71,15 @@ const InputField: React.FC<InputProps> = ({ setData, setId }) => {
     });
   };
 
+  const increment = (item: OrderItem) => {
+    item.quantity++;
+    selectedItems?.items?.map((i) => (i.id === item.id ? item : i));
+    setQuantity(item.quantity);
+  };
+
   useEffect(() => {
     const returnCash = givenAmount - orderAmount;
+    // console.log("returnCash = ", returnCash);
     if (orderAmount === 0) {
       return;
     } else if (givenAmount >= orderAmount) {
@@ -78,7 +88,7 @@ const InputField: React.FC<InputProps> = ({ setData, setId }) => {
     } else {
       setAlert(true);
     }
-  }, [orderAmount, givenAmount]);
+  }, [orderAmount, givenAmount, quantity]);
 
   return (
     <>
@@ -213,11 +223,46 @@ const InputField: React.FC<InputProps> = ({ setData, setId }) => {
                     style={{ marginTop: "5px" }}
                   ></Alert>
                 )}
+                <br />
                 <Form.Item label="Total Item Cost">
                   <h2 className="price">{orderAmount}</h2>
                 </Form.Item>
                 <Form.Item label="Cash to Return">
                   <h2>{returnAmount}</h2>
+                </Form.Item>
+                <hr />
+                <br />
+                <Form.Item>
+                  <List
+                    grid={{
+                      gutter: 16,
+                      xs: 1,
+                      sm: 1,
+                      md: 1,
+                      lg: 1,
+                    }}
+                    dataSource={selectedItems?.items}
+                    renderItem={(item: any) => {
+                      return (
+                        <List.Item>
+                          <Card title={item?.restaurantName}>
+                            <ul>
+                              <li>{item?.dish}</li>
+                              <li>
+                                {item?.quantity}
+                                <span style={{ float: "right" }}>
+                                  <PlusCircleOutlined
+                                    className="increment-button"
+                                    onClick={() => increment(item)}
+                                  />
+                                </span>
+                              </li>
+                            </ul>
+                          </Card>
+                        </List.Item>
+                      );
+                    }}
+                  />
                 </Form.Item>
                 <Form.Item>
                   <Button
