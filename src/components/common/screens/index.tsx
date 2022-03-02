@@ -60,7 +60,7 @@ const Dashboard: React.FC<InputProps> = ({ data, id }: any) => {
   const calcTotalCost = (items: any) => {
     let sumOfAmount = 0;
     items.forEach((price: any) => {
-      let sumOfPrice = price.amount;
+      let sumOfPrice = price.amount * price.quantity;
       sumOfAmount += sumOfPrice;
     });
     return sumOfAmount;
@@ -86,7 +86,7 @@ const Dashboard: React.FC<InputProps> = ({ data, id }: any) => {
                       {(item?.items || []).map((res: any, index: number) => {
                         return (
                           <div key={index}>
-                            <li>{`${res.restaurantName} : ${res?.dish}`}</li>
+                            <li>{`${res.restaurantName} : ${res?.dish} , Quantity : ${res.quantity}`}</li>
                           </div>
                         );
                       })}

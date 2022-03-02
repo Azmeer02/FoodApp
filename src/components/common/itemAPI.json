@@ -5,364 +5,364 @@
             "id": 2,
             "dish": "Chicken Biryani (SMALL)",
             "amount": 90,
-            "quantity" : 1
+            "quantity": 1
         },
         {
             "restaurantName": "Al-Naz (Main)",
             "id": 3,
             "dish": "Chicken Biryani (MEDIUM)",
             "amount": 130,
-            "quantity" : 1
+            "quantity": 1
         },
         {
             "restaurantName": "Al-Naz (Main)",
             "id": 4,
             "dish": "Chicken Biryani (LARGE)",
             "amount": 160,
-            "quantity" : 1
+            "quantity": 1
         },
         {
             "restaurantName": "Al-Naz (Main)",
             "id": 5,
             "dish": "Plain Biryani (SMALL)",
             "amount": 70,
-            "quantity" : 1
+            "quantity": 1
         },
         {
             "restaurantName": "Al-Naz (Main)",
             "id": 6,
             "dish": "Plain Biryani (MEDIUM)",
             "amount": 110,
-            "quantity" : 1
+            "quantity": 1
         },
         {
             "restaurantName": "Al-Naz (Main)",
             "id": 7,
             "dish": "Plain Biryani (LARGE)",
             "amount": 140,
-            "quantity" : 1
+            "quantity": 1
         },
         {
             "restaurantName": "Al-Naz (Back)",
             "id": 9,
             "dish": "Chicken Biryani (SMALL)",
             "amount": 90,
-            "quantity" : 1
+            "quantity": 1
         },
         {
             "restaurantName": "Al-Naz (Back)",
             "id": 10,
             "dish": "Chicken Biryani (MEDIUM)",
             "amount": 130,
-            "quantity" : 1
+            "quantity": 1
         },
         {
             "restaurantName": "Al-Naz (Back)",
             "id": 11,
             "dish": "Chicken Biryani (LARGE)",
             "amount": 160,
-            "quantity" : 1
+            "quantity": 1
         },
         {
             "restaurantName": "Al-Naz (Back)",
             "id": 12,
             "dish": "Plain Biryani (SMALL)",
             "amount": 60,
-            "quantity" : 1
+            "quantity": 1
         },
         {
             "restaurantName": "Al-Naz (Back)",
             "id": 13,
             "dish": "Plain Biryani (MEDIUM)",
             "amount": 100,
-            "quantity" : 1
+            "quantity": 1
         },
         {
             "restaurantName": "Al-Naz (Back)",
             "id": 14,
             "dish": "Plain Biryani (LARGE)",
             "amount": 120,
-            "quantity" : 1
+            "quantity": 1
         },
         {
             "restaurantName": "A-One Restaurant",
             "id": 16,
             "dish": "Chicken Pulao (SMALL)",
             "amount": 90,
-            "quantity" : 1
+            "quantity": 1
         },
         {
             "restaurantName": "A-One Restaurant",
             "id": 17,
             "dish": "Chicken Pulao (MEDIUM)",
             "amount": 120,
-            "quantity" : 1
+            "quantity": 1
         },
         {
             "restaurantName": "A-One Restaurant",
             "id": 18,
             "dish": "Chicken Pulao (LARGE)",
             "amount": 160,
-            "quantity" : 1
+            "quantity": 1
         },
         {
             "restaurantName": "A-One Restaurant",
             "id": 19,
             "dish": "Plain Pulao (SMALL)",
             "amount": 60,
-            "quantity" : 1
+            "quantity": 1
         },
         {
             "restaurantName": "A-One Restaurant",
             "id": 20,
             "dish": "Plain Pulao (MEDIUM)",
             "amount": 100,
-            "quantity" : 1
+            "quantity": 1
         },
         {
             "restaurantName": "A-One Restaurant",
             "id": 21,
             "dish": "Plain Pulao (LARGE)",
             "amount": 120,
-            "quantity" : 1
+            "quantity": 1
         },
         {
             "restaurantName": "A-One Restaurant",
             "id": 56,
             "dish": "Chicken Biryani (SMALL)",
             "amount": 120,
-            "quantity" : 1
+            "quantity": 1
         },
         {
             "restaurantName": "A-One Restaurant",
             "id": 57,
             "dish": "Chicken Biryani (MEDIUM)",
             "amount": 140,
-            "quantity" : 1
+            "quantity": 1
         },
         {
             "restaurantName": "A-One Restaurant",
             "id": 58,
             "dish": "Chicken Biryani (LARGE)",
             "amount": 160,
-            "quantity" : 1
+            "quantity": 1
         },
         {
             "restaurantName": "Hunger Station",
             "id": 23,
             "dish": "Chicken Biryani (SMALL)",
             "amount": 90,
-            "quantity" : 1
+            "quantity": 1
         },
         {
             "restaurantName": "Hunger Station",
             "id": 24,
             "dish": "Chicken Biryani (MEDIUM)",
             "amount": 120,
-            "quantity" : 1
+            "quantity": 1
         },
         {
             "restaurantName": "Hunger Station",
             "id": 25,
             "dish": "Chicken Biryani (LARGE)",
             "amount": 160,
-            "quantity" : 1
+            "quantity": 1
         },
         {
             "restaurantName": "Hunger Station",
             "id": 26,
             "dish": "Plain Biryani (SMALL)",
             "amount": 60,
-            "quantity" : 1
+            "quantity": 1
         },
         {
             "restaurantName": "Hunger Station",
             "id": 27,
             "dish": "Plain Biryani (MEDIUM)",
             "amount": 100,
-            "quantity" : 1
+            "quantity": 1
         },
         {
             "restaurantName": "Hunger Station",
             "id": 28,
             "dish": "Plain Biryani (LARGE)",
             "amount": 120,
-            "quantity" : 1
+            "quantity": 1
         },
         {
             "restaurantName": "Quetta Hotel",
             "id": 30,
             "dish": "Paratha",
             "amount": 30,
-            "quantity" : 1
+            "quantity": 1
         },
         {
             "restaurantName": "Quetta Hotel",
             "id": 31,
             "dish": "Alu Paratha",
             "amount": 60,
-            "quantity" : 1
+            "quantity": 1
         },
         {
             "restaurantName": "Quetta Hotel",
             "id": 32,
             "dish": "Kebab Paratha",
             "amount": 70,
-            "quantity" : 1
+            "quantity": 1
         },
         {
             "restaurantName": "Quetta Hotel",
             "id": 33,
             "dish": "Cheese Paratha",
             "amount": 100,
-            "quantity" : 1
+            "quantity": 1
         },
         {
             "restaurantName": "Others",
             "id": 35,
             "dish": "Cholay (SMALL)",
             "amount": 60,
-            "quantity" : 1
+            "quantity": 1
         },
         {
             "restaurantName": "Others",
             "id": 36,
             "dish": "Cholay (MEDIUM)",
             "amount": 80,
-            "quantity" : 1
+            "quantity": 1
         },
         {
             "restaurantName": "Others",
             "id": 37,
             "dish": "Cholay (LARGE)",
             "amount": 120,
-            "quantity" : 1
+            "quantity": 1
         },
         {
             "restaurantName": "Others",
             "id": 38,
             "dish": "Anda Gotala",
             "amount": 100,
-            "quantity" : 1
+            "quantity": 1
         },
         {
             "restaurantName": "Others",
             "id": 39,
             "dish": "Chana Daal (SMALL)",
             "amount": 60,
-            "quantity" : 1
+            "quantity": 1
         },
         {
             "restaurantName": "Others",
             "id": 40,
             "dish": "Chana Daal (MEDIUM)",
             "amount": 80,
-            "quantity" : 1
+            "quantity": 1
         },
         {
             "restaurantName": "Others",
             "id": 41,
             "dish": "Chana Daal(LARGE)",
             "amount": 120,
-            "quantity" : 1
+            "quantity": 1
         },
         {
             "restaurantName": "Others",
             "id": 42,
             "dish": "Karahi",
             "amount": 120,
-            "quantity" : 1
+            "quantity": 1
         },
         {
             "restaurantName": "Others",
             "id": 43,
             "dish": "Kaleji",
             "amount": 120,
-            "quantity" : 1
+            "quantity": 1
         },
         {
             "restaurantName": "Others",
             "id": 44,
             "dish": "Aaloo Qeema",
             "amount": 120,
-            "quantity" : 1
+            "quantity": 1
         },
         {
             "restaurantName": "Others",
             "id": 45,
             "dish": "Maash Daal (SMALL)",
             "amount": 60,
-            "quantity" : 1
+            "quantity": 1
         },
         {
             "restaurantName": "Others",
             "id": 46,
             "dish": "Maash Daal (MEDIUM)",
             "amount": 80,
-            "quantity" : 1
+            "quantity": 1
         },
         {
             "restaurantName": "Others",
             "id": 47,
             "dish": "Maash Daal(LARGE)",
             "amount": 120,
-            "quantity" : 1
+            "quantity": 1
         },
         {
             "restaurantName": "Others",
             "id": 48,
             "dish": "Aaloo Palak (SMALL)",
             "amount": 60,
-            "quantity" : 1
+            "quantity": 1
         },
         {
             "restaurantName": "Others",
             "id": 49,
             "dish": "Aaloo Palak (MEDIUM)",
             "amount": 80,
-            "quantity" : 1
+            "quantity": 1
         },
         {
             "restaurantName": "Others",
             "id": 50,
             "dish": "Aaloo Palak (LARGE)",
             "amount": 120,
-            "quantity" : 1
+            "quantity": 1
         },
         {
             "restaurantName": "Others",
             "id": 51,
             "dish": "Daal Gotala",
             "amount": 120,
-            "quantity" : 1
+            "quantity": 1
         },
         {
             "restaurantName": "Side-Items",
             "id": 52,
             "dish": "Tandoori",
             "amount": 15,
-            "quantity" : 1
+            "quantity": 1
         },
         {
             "restaurantName": "Side-Items",
             "id": 53,
             "dish": "Chapati",
             "amount": 10,
-            "quantity" : 1
+            "quantity": 1
         },
         {
             "restaurantName": "Side-Items",
             "id": 54,
             "dish": "Raita",
             "amount": 30,
-            "quantity" : 1
+            "quantity": 1
         },
         {
             "restaurantName": "Side-Items",
             "id": 55,
             "dish": "Salad",
             "amount": 30,
-            "quantity" : 1
+            "quantity": 1
         }
     ]
 }

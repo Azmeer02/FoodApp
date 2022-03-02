@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 
-import { Form, Button, Input, Alert, Select, Spin, List, Card } from "antd";
-import { PlusCircleOutlined } from "@ant-design/icons";
+import { Form, Button, Input, Alert, Select, Spin, Modal } from "antd";
+import { CaretRightOutlined } from "@ant-design/icons";
 import "antd/dist/antd.css";
 
 import { Box, Paper } from "@mui/material";
@@ -34,7 +34,8 @@ type InputProps = {
 };
 
 const InputField: React.FC<InputProps> = ({ setData, setId }) => {
-  const [selectedItems, setSelectedItems] = useState<OrderItems>();
+  const [visible, setVisible] = useState(false);
+  const [selectedItems, setSelectedItems] = useState<any>([]);
   const [givenAmount, setGivenAmount] = useState<number>(0);
   const [orderAmount, setOrderAmount] = useState<number>(0);
   const [returnAmount, setReturnAmount] = useState<number>();
@@ -71,15 +72,29 @@ const InputField: React.FC<InputProps> = ({ setData, setId }) => {
     });
   };
 
-  const increment = (item: OrderItem) => {
-    item.quantity++;
-    selectedItems?.items?.map((i) => (i.id === item.id ? item : i));
-    setQuantity(item.quantity);
+  const increment = (obj: OrderItem) => {
+    selectedItems?.items?.forEach((i: OrderItem) =>
+      i.id === obj.id ? obj.quantity++ : i
+    );
+    setQuantity(0);
+    // let sumOfOrderItemsPrice = 0;
+    // selectedItems?.items?.forEach(
+    //   (item: OrderItem) => (sumOfOrderItemsPrice += item.amount * item.quantity)
+    // );
+    // setQuantity(sumOfOrderItemsPrice);
+  };
+
+  const decrement = (obj: OrderItem) => {
+    if (obj.quantity >= 1) {
+      selectedItems?.items?.forEach((i: OrderItem) =>
+        i.id === obj.id ? obj.quantity-- : i
+      );
+      setQuantity(0);
+    }
   };
 
   useEffect(() => {
-    const returnCash = givenAmount - orderAmount;
-    // console.log("returnCash = ", returnCash);
+    const returnCash = givenAmount - quantity;
     if (orderAmount === 0) {
       return;
     } else if (givenAmount >= orderAmount) {
@@ -89,6 +104,14 @@ const InputField: React.FC<InputProps> = ({ setData, setId }) => {
       setAlert(true);
     }
   }, [orderAmount, givenAmount, quantity]);
+
+  useEffect(() => {
+    let sumOfOrderItemsPrice = 0;
+    selectedItems?.items?.forEach(
+      (item: OrderItem) => (sumOfOrderItemsPrice += item.amount * item.quantity)
+    );
+    setQuantity(sumOfOrderItemsPrice);
+  }, [quantity, selectedItems]);
 
   return (
     <>
@@ -225,12 +248,82 @@ const InputField: React.FC<InputProps> = ({ setData, setId }) => {
                 )}
                 <br />
                 <Form.Item label="Total Item Cost">
-                  <h2 className="price">{orderAmount}</h2>
+                  <h2 className="price">
+                    {quantity}
+                    <span style={{ float: "right" }}>
+                      <Button type="primary" onClick={() => setVisible(true)}>
+                        Next
+                        <CaretRightOutlined />
+                      </Button>
+                      <Modal
+                        title="Order Detail"
+                        centered
+                        visible={visible}
+                        onOk={() => setVisible(false)}
+                        onCancel={() => setVisible(false)}
+                        width={1000}
+                      >
+                        <div>
+                          {selectedItems?.items?.map((obj: OrderItem) => {
+                            return (
+                              <>
+                                <div>
+                                  <ul key={obj.id}>
+                                    <li>
+                                      <h3>
+                                        Restaurant Name: {obj.restaurantName}
+                                      </h3>
+                                    </li>
+                                    <li>
+                                      <h3>Restaurant Item: {obj.dish}</h3>
+                                    </li>
+                                    <li>
+                                      <h3>Item Cost: {obj.amount}</h3>
+                                    </li>
+                                    <li>
+                                      <h3>
+                                        Quantity: {obj.quantity}
+                                        <span>
+                                          <Button
+                                            htmlType="submit"
+                                            style={{ float: "right" }}
+                                            onClick={() => decrement(obj)}
+                                          >
+                                            Decrement
+                                          </Button>
+                                          <Button
+                                            htmlType="submit"
+                                            style={{
+                                              float: "right",
+                                              marginRight: "10px",
+                                            }}
+                                            onClick={() => increment(obj)}
+                                          >
+                                            Increment
+                                          </Button>
+                                        </span>
+                                      </h3>
+                                    </li>
+                                  </ul>
+                                </div>
+                                <hr />
+                              </>
+                            );
+                          })}
+                          {/* <br /> */}
+                          <div style={{ float: "right" }}>
+                            <h2>Total Item Costs: {quantity}</h2>
+                          </div>
+                          <br />
+                        </div>
+                      </Modal>
+                    </span>
+                  </h2>
                 </Form.Item>
                 <Form.Item label="Cash to Return">
                   <h2>{returnAmount}</h2>
                 </Form.Item>
-                <hr />
+                {/* <hr />
                 <br />
                 <Form.Item>
                   <List
@@ -263,7 +356,7 @@ const InputField: React.FC<InputProps> = ({ setData, setId }) => {
                       );
                     }}
                   />
-                </Form.Item>
+                </Form.Item> */}
                 <Form.Item>
                   <Button
                     htmlType="submit"
