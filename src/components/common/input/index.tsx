@@ -35,13 +35,15 @@ type InputProps = {
 
 const InputField: React.FC<InputProps> = ({ setData, setId }) => {
   const [visible, setVisible] = useState(false);
-  const [selectedItems, setSelectedItems] = useState<any>([]);
+  const [name, setName] = useState<string>();
+  const [selectedItems, setSelectedItems] = useState<any>({});
   const [givenAmount, setGivenAmount] = useState<number>(0);
   const [orderAmount, setOrderAmount] = useState<number>(0);
   const [returnAmount, setReturnAmount] = useState<number>();
   const [quantity, setQuantity] = useState<number>(1);
   const [alert, setAlert] = useState<boolean>(false);
   const [loading, setLoading] = useState<boolean>(false);
+
   const currDate = new Date();
 
   const staticOrderItems: OrderItems = items;
@@ -50,11 +52,12 @@ const InputField: React.FC<InputProps> = ({ setData, setId }) => {
   let navigate = useNavigate();
 
   const unique = Array.from(
-    new Set(staticOrderItems.items.map((res: any) => res.restaurantName))
+    new Set(staticOrderItems.items.map((res: OrderItem) => res.restaurantName))
   ).map((value: any) => value);
 
   const onFormSubmit = async () => {
     form.validateFields().then(async (values) => {
+      values.name = name;
       values.givenAmount = givenAmount;
       values.items = selectedItems?.items;
       values.date = currDate;
@@ -77,11 +80,6 @@ const InputField: React.FC<InputProps> = ({ setData, setId }) => {
       i.id === obj.id ? obj.quantity++ : i
     );
     setQuantity(0);
-    // let sumOfOrderItemsPrice = 0;
-    // selectedItems?.items?.forEach(
-    //   (item: OrderItem) => (sumOfOrderItemsPrice += item.amount * item.quantity)
-    // );
-    // setQuantity(sumOfOrderItemsPrice);
   };
 
   const decrement = (obj: OrderItem) => {
@@ -135,7 +133,7 @@ const InputField: React.FC<InputProps> = ({ setData, setId }) => {
                     { required: true, message: "Please select your Username!" },
                   ]}
                 >
-                  <Select>
+                  <Select onChange={setName}>
                     <Select.Option value="Mohsin Ghani">
                       Mohsin Ghani
                     </Select.Option>
@@ -211,27 +209,31 @@ const InputField: React.FC<InputProps> = ({ setData, setId }) => {
                       setOrderAmount(sumOfOrderItemsPrice);
                     }}
                   >
-                    {unique.map((uni, idx) => (
-                      <OptGroup key={idx} label={uni}>
-                        {staticOrderItems.items
-                          .filter((item: any) => item.restaurantName === uni)
-                          .map((item: any) => (
-                            <Option key={item.id} value={item.id}>
-                              {`${uni} : ${item.dish} , `}
-                              <span
-                                style={{ float: "right" }}
-                              >{`Rs.${item.amount}/-`}</span>
-                            </Option>
-                          ))}
-                      </OptGroup>
-                    ))}
+                    {unique.map((uni, id) => {
+                      // console.log("id =", id);
+                      return (
+                        <OptGroup key={id} label={uni}>
+                          {staticOrderItems.items
+                            .filter((item: any) => item.restaurantName === uni)
+                            .map((item: any, index: number) => {
+                              // console.log(item.id);
+                              return (
+                                <Option key={item.id} value={item.id}>
+                                  {`${uni} : ${item.dish} , `}
+                                  <span
+                                    style={{ float: "right" }}
+                                  >{`Rs.${item.amount}/-`}</span>
+                                </Option>
+                              );
+                            })}
+                        </OptGroup>
+                      );
+                    })}
                   </Select>
                 </Form.Item>
                 <Form.Item
                   label="Cash u have"
-                  rules={[
-                    { required: true, message: "Please select your Username!" },
-                  ]}
+                  rules={[{ required: true, message: "Please Enter Amount!" }]}
                 >
                   <Input
                     onChange={(e) => {
@@ -251,7 +253,12 @@ const InputField: React.FC<InputProps> = ({ setData, setId }) => {
                   <h2 className="price">
                     {quantity}
                     <span style={{ float: "right" }}>
-                      <Button type="primary" onClick={() => setVisible(true)}>
+                      <Button
+                        type="primary"
+                        onClick={() => setVisible(true)}
+                        // disabled={selectedItems?.items === {} ? false : true}
+                        disabled={!!selectedItems && !givenAmount}
+                      >
                         Next
                         <CaretRightOutlined />
                       </Button>
@@ -310,7 +317,6 @@ const InputField: React.FC<InputProps> = ({ setData, setId }) => {
                               </>
                             );
                           })}
-                          {/* <br /> */}
                           <div style={{ float: "right" }}>
                             <h2>Total Item Costs: {quantity}</h2>
                           </div>
@@ -321,46 +327,23 @@ const InputField: React.FC<InputProps> = ({ setData, setId }) => {
                   </h2>
                 </Form.Item>
                 <Form.Item label="Cash to Return">
-                  <h2>{returnAmount}</h2>
+                  <h2>{givenAmount < quantity ? 0 : returnAmount}</h2>
                 </Form.Item>
-                {/* <hr />
-                <br />
-                <Form.Item>
-                  <List
-                    grid={{
-                      gutter: 16,
-                      xs: 1,
-                      sm: 1,
-                      md: 1,
-                      lg: 1,
-                    }}
-                    dataSource={selectedItems?.items}
-                    renderItem={(item: any) => {
-                      return (
-                        <List.Item>
-                          <Card title={item?.restaurantName}>
-                            <ul>
-                              <li>{item?.dish}</li>
-                              <li>
-                                {item?.quantity}
-                                <span style={{ float: "right" }}>
-                                  <PlusCircleOutlined
-                                    className="increment-button"
-                                    onClick={() => increment(item)}
-                                  />
-                                </span>
-                              </li>
-                            </ul>
-                          </Card>
-                        </List.Item>
-                      );
-                    }}
-                  />
-                </Form.Item> */}
                 <Form.Item>
                   <Button
                     htmlType="submit"
                     style={{ float: "right" }}
+                    // disabled={
+                    //   selectedItems && givenAmount
+                    //     ? false
+                    //     : true
+                    // }
+                    disabled={
+                      !selectedItems ||
+                      !givenAmount ||
+                      !name ||
+                      givenAmount < quantity
+                    }
                     onClick={() => {
                       onFormSubmit();
                       setLoading(true);
