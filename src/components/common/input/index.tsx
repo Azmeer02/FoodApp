@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-import { Form, Button, Input, Alert, Select, Spin, Modal } from "antd";
+import { Form, Button, Input, Select, Spin, Modal } from "antd";
 import { CaretRightOutlined } from "@ant-design/icons";
 import "antd/dist/antd.css";
 
@@ -41,7 +41,7 @@ const InputField: React.FC<InputProps> = ({ setData, setId }) => {
   const [orderAmount, setOrderAmount] = useState<number>(0);
   const [returnAmount, setReturnAmount] = useState<number>();
   const [quantity, setQuantity] = useState<number>(1);
-  const [alert, setAlert] = useState<boolean>(false);
+  // const [alert, setAlert] = useState<boolean>(false);
   const [loading, setLoading] = useState<boolean>(false);
 
   const currDate = new Date();
@@ -102,12 +102,13 @@ const InputField: React.FC<InputProps> = ({ setData, setId }) => {
   useEffect(() => {
     const returnCash = givenAmount - quantity;
     if (orderAmount === 0) {
+      // setAlert(false);
       return;
     } else if (givenAmount >= orderAmount) {
       setReturnAmount(returnCash);
-      setAlert(false);
+      // setAlert(false);
     } else {
-      setAlert(true);
+      // setAlert(true);
     }
   }, [orderAmount, givenAmount, quantity]);
 
@@ -237,7 +238,7 @@ const InputField: React.FC<InputProps> = ({ setData, setId }) => {
                   })}
                 </Select>
               </Form.Item>
-              <Form.Item
+              {/* <Form.Item
                 label="Cash u have"
                 rules={[{ required: true, message: "Please Enter Amount!" }]}
               >
@@ -253,7 +254,7 @@ const InputField: React.FC<InputProps> = ({ setData, setId }) => {
                   type="error"
                   style={{ marginTop: "5px" }}
                 ></Alert>
-              )}
+              )} */}
               <Form.Item label="Total Item Cost">
                 <h2 className="price">
                   {quantity}
@@ -261,12 +262,7 @@ const InputField: React.FC<InputProps> = ({ setData, setId }) => {
                     <Button
                       type="primary"
                       onClick={() => setVisible(true)}
-                      disabled={
-                        !name ||
-                        !selectedItems ||
-                        !givenAmount ||
-                        orderAmount > givenAmount
-                      }
+                      disabled={!selectedItems?.items?.length || !name}
                     >
                       Next
                       <CaretRightOutlined />
@@ -278,7 +274,6 @@ const InputField: React.FC<InputProps> = ({ setData, setId }) => {
                       onOk={() => setVisible(false)}
                       onCancel={() => setVisible(false)}
                       footer={[
-                        <Button type="primary">Cancel</Button>,
                         <Button
                           onClick={() => {
                             onFormSubmit();
@@ -318,7 +313,6 @@ const InputField: React.FC<InputProps> = ({ setData, setId }) => {
                                         <h3>
                                           Quantity: {obj.quantity}
                                           <span>
-                                            {/* {quantity <= 1 ? ( */}
                                             <Button
                                               htmlType="submit"
                                               style={{
@@ -328,7 +322,6 @@ const InputField: React.FC<InputProps> = ({ setData, setId }) => {
                                             >
                                               Increment
                                             </Button>
-                                            {/* ) : ( */}
                                             <Button
                                               htmlType="submit"
                                               style={{
@@ -336,10 +329,12 @@ const InputField: React.FC<InputProps> = ({ setData, setId }) => {
                                                 marginRight: "10px",
                                               }}
                                               onClick={() => decrement(obj)}
+                                              disabled={
+                                                obj.quantity <= 1 ? true : false
+                                              }
                                             >
                                               Decrement
                                             </Button>
-                                            {/* )} */}
                                           </span>
                                         </h3>
                                       </li>
@@ -350,6 +345,31 @@ const InputField: React.FC<InputProps> = ({ setData, setId }) => {
                               );
                             }
                           )}
+                          <br />
+                          <div>
+                            <Form.Item
+                              label="Cash u have"
+                              rules={[
+                                {
+                                  required: true,
+                                  message: "Please Enter Amount!",
+                                },
+                              ]}
+                            >
+                              <Input
+                                onChange={(e) => {
+                                  setGivenAmount(+e.target.value);
+                                }}
+                              />
+                            </Form.Item>
+                            {/* {alert && (
+                              <Alert
+                                message="Please add Equivalent or Greater Amount"
+                                type="error"
+                                style={{ marginTop: "5px" }}
+                              ></Alert>
+                            )} */}
+                          </div>
                           <div
                             style={{
                               display: "flex",
