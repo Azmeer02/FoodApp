@@ -76,9 +76,17 @@ const InputField: React.FC<InputProps> = ({ setData, setId }) => {
   };
 
   const increment = (obj: OrderItem) => {
-    selectedItems?.items?.forEach((i: OrderItem) =>
-      i.id === obj.id ? obj.quantity++ : i
-    );
+    setSelectedItems((s: any) => {
+      return {
+        ...s,
+        items: s.items.map((i: OrderItem) => {
+          return {
+            ...i,
+            quantity: i.id === obj.id ? i.quantity++ : i.quantity,
+          };
+        }),
+      };
+    });
     setQuantity(0);
   };
 
@@ -125,219 +133,264 @@ const InputField: React.FC<InputProps> = ({ setData, setId }) => {
           >
             <h1 className="order">Place Your Order Here...</h1>
             <Form layout="horizontal" className="form" form={form}>
-              <Spin spinning={loading}>
-                <Form.Item
-                  name="name"
-                  label="Select User"
-                  rules={[
-                    { required: true, message: "Please select your Username!" },
-                  ]}
+              <Form.Item
+                name="name"
+                label="Select User"
+                rules={[
+                  { required: true, message: "Please select your Username!" },
+                ]}
+              >
+                <Select onChange={setName}>
+                  <Select.Option value="Mohsin Ghani">
+                    Mohsin Ghani
+                  </Select.Option>
+                  <Select.Option value="Hammad Younus">
+                    Hammad Younus
+                  </Select.Option>
+                  <Select.Option value="Shariq Ateeq">
+                    Shariq Ateeq
+                  </Select.Option>
+                  <Select.Option value="Yasir Ahmed">
+                    Yasir Ahmed Ghouri
+                  </Select.Option>
+                  <Select.Option value="Syed Rahmeer">
+                    Syed Rahmeer
+                  </Select.Option>
+                  <Select.Option value="Zia-Ur-Rehman">
+                    Zia-Ur-Rehman Warsi
+                  </Select.Option>
+                  <Select.Option value="Ibrar Ahmed">
+                    Ibrar Ahmed Khatri
+                  </Select.Option>
+                  <Select.Option value="Syed Azmeer">
+                    Syed Azmeer Haider
+                  </Select.Option>
+                  <Select.Option value="Sarib Ghouri">
+                    Sarib Ghouri
+                  </Select.Option>
+                  <Select.Option value="Atif Memon">Atif Memon</Select.Option>
+                  <Select.Option value="Muhammad Shayan">
+                    Muhammad Shayan
+                  </Select.Option>
+                  <Select.Option value="Muhammad Usman">
+                    Muhammad Usman Ali
+                  </Select.Option>
+                  <Select.Option value="Hashir Khan">Hashir Khan</Select.Option>
+                  <Select.Option value="Muhammad Ahsan">
+                    Muhammad Ahsan Ali
+                  </Select.Option>
+                  <Select.Option value="Muhammad Qasim">
+                    Muhammmad Qasim
+                  </Select.Option>
+                  <Select.Option value="Tabish Ansari">
+                    Tabish Ansari
+                  </Select.Option>
+                </Select>
+              </Form.Item>
+              <Form.Item
+                label="Order"
+                name="items"
+                rules={[
+                  { required: true, message: "Please select your Order!" },
+                ]}
+              >
+                <Select
+                  mode="multiple"
+                  style={{ width: "100%" }}
+                  placeholder="Select Restaurant & Order"
+                  onChange={(e) => {
+                    let selected: OrderItems = {
+                      items: staticOrderItems?.items?.filter(
+                        (item: OrderItem) => {
+                          return e.includes(item.id);
+                        }
+                      ),
+                    };
+                    setSelectedItems(selected);
+                    let sumOfOrderItemsPrice = 0;
+                    selected.items.forEach((item: OrderItem) => {
+                      sumOfOrderItemsPrice += item.amount;
+                    });
+                    setOrderAmount(sumOfOrderItemsPrice);
+                  }}
                 >
-                  <Select onChange={setName}>
-                    <Select.Option value="Mohsin Ghani">
-                      Mohsin Ghani
-                    </Select.Option>
-                    <Select.Option value="Hammad Younus">
-                      Hammad Younus
-                    </Select.Option>
-                    <Select.Option value="Shariq Ateeq">
-                      Shariq Ateeq
-                    </Select.Option>
-                    <Select.Option value="Yasir Ahmed">
-                      Yasir Ahmed Ghouri
-                    </Select.Option>
-                    <Select.Option value="Syed Rahmeer">
-                      Syed Rahmeer
-                    </Select.Option>
-                    <Select.Option value="Zia-Ur-Rehman">
-                      Zia-Ur-Rehman Warsi
-                    </Select.Option>
-                    <Select.Option value="Ibrar Ahmed">
-                      Ibrar Ahmed Khatri
-                    </Select.Option>
-                    <Select.Option value="Syed Azmeer">
-                      Syed Azmeer Haider
-                    </Select.Option>
-                    <Select.Option value="Sarib Ghouri">
-                      Sarib Ghouri
-                    </Select.Option>
-                    <Select.Option value="Atif Memon">Atif Memon</Select.Option>
-                    <Select.Option value="Muhammad Shayan">
-                      Muhammad Shayan
-                    </Select.Option>
-                    <Select.Option value="Muhammad Usman">
-                      Muhammad Usman Ali
-                    </Select.Option>
-                    <Select.Option value="Hashir Khan">
-                      Hashir Khan
-                    </Select.Option>
-                    <Select.Option value="Muhammad Ahsan">
-                      Muhammad Ahsan Ali
-                    </Select.Option>
-                    <Select.Option value="Muhammad Qasim">
-                      Muhammmad Qasim
-                    </Select.Option>
-                    <Select.Option value="Tabish Ansari">
-                      Tabish Ansari
-                    </Select.Option>
-                  </Select>
-                </Form.Item>
-                <Form.Item
-                  label="Order"
-                  name="items"
-                  rules={[
-                    { required: true, message: "Please select your Order!" },
-                  ]}
-                >
-                  <Select
-                    mode="multiple"
-                    style={{ width: "100%" }}
-                    placeholder="Select Restaurant & Order"
-                    onChange={(e) => {
-                      let selected: OrderItems = {
-                        items: staticOrderItems?.items?.filter(
-                          (item: OrderItem) => {
-                            return e.includes(item.id);
-                          }
-                        ),
-                      };
-                      setSelectedItems(selected);
-                      let sumOfOrderItemsPrice = 0;
-                      selected.items.forEach((item: OrderItem) => {
-                        sumOfOrderItemsPrice += item.amount;
-                      });
-                      setOrderAmount(sumOfOrderItemsPrice);
-                    }}
-                  >
-                    {unique.map((uni, id) => {
-                      // console.log("id =", id);
-                      return (
-                        <OptGroup key={id} label={uni}>
-                          {staticOrderItems.items
-                            .filter((item: any) => item.restaurantName === uni)
-                            .map((item: any, index: number) => {
-                              // console.log(item.id);
-                              return (
-                                <Option key={item.id} value={item.id}>
-                                  {`${uni} : ${item.dish} , `}
-                                  <span
-                                    style={{ float: "right" }}
-                                  >{`Rs.${item.amount}/-`}</span>
-                                </Option>
-                              );
-                            })}
-                        </OptGroup>
-                      );
-                    })}
-                  </Select>
-                </Form.Item>
-                <Form.Item
-                  label="Cash u have"
-                  rules={[{ required: true, message: "Please Enter Amount!" }]}
-                >
-                  <Input
-                    onChange={(e) => {
-                      setGivenAmount(+e.target.value);
-                    }}
-                  />
-                </Form.Item>
-                {alert && (
-                  <Alert
-                    message="Please add Equivalent or Greater Amount"
-                    type="error"
-                    style={{ marginTop: "5px" }}
-                  ></Alert>
-                )}
-                <br />
-                <Form.Item label="Total Item Cost">
-                  <h2 className="price">
-                    {quantity}
-                    <span style={{ float: "right" }}>
-                      <Button
-                        type="primary"
-                        onClick={() => setVisible(true)}
-                        // disabled={selectedItems?.items === {} ? false : true}
-                        disabled={!!selectedItems && !givenAmount}
-                      >
-                        Next
-                        <CaretRightOutlined />
-                      </Button>
-                      <Modal
-                        title="Order Detail"
-                        centered
-                        visible={visible}
-                        onOk={() => setVisible(false)}
-                        onCancel={() => setVisible(false)}
-                        width={1000}
-                      >
-                        <div>
-                          {selectedItems?.items?.map((obj: OrderItem) => {
+                  {unique.map((uni, id) => {
+                    return (
+                      <OptGroup key={id} label={uni}>
+                        {staticOrderItems.items
+                          .filter((item: any) => item.restaurantName === uni)
+                          .map((item: any, index: number) => {
                             return (
-                              <>
-                                <div>
-                                  <ul key={obj.id}>
-                                    <li>
-                                      <h3>
-                                        Restaurant Name: {obj.restaurantName}
-                                      </h3>
-                                    </li>
-                                    <li>
-                                      <h3>Restaurant Item: {obj.dish}</h3>
-                                    </li>
-                                    <li>
-                                      <h3>Item Cost: {obj.amount}</h3>
-                                    </li>
-                                    <li>
-                                      <h3>
-                                        Quantity: {obj.quantity}
-                                        <span>
-                                          <Button
-                                            htmlType="submit"
-                                            style={{ float: "right" }}
-                                            onClick={() => decrement(obj)}
-                                          >
-                                            Decrement
-                                          </Button>
-                                          <Button
-                                            htmlType="submit"
-                                            style={{
-                                              float: "right",
-                                              marginRight: "10px",
-                                            }}
-                                            onClick={() => increment(obj)}
-                                          >
-                                            Increment
-                                          </Button>
-                                        </span>
-                                      </h3>
-                                    </li>
-                                  </ul>
-                                </div>
-                                <hr />
-                              </>
+                              <Option
+                                key={`${item.id} ${index}`}
+                                value={item.id}
+                              >
+                                {`${uni} : ${item.dish} , `}
+                                <span
+                                  style={{ float: "right" }}
+                                >{`Rs.${item.amount}/-`}</span>
+                              </Option>
                             );
                           })}
-                          <div style={{ float: "right" }}>
+                      </OptGroup>
+                    );
+                  })}
+                </Select>
+              </Form.Item>
+              <Form.Item
+                label="Cash u have"
+                rules={[{ required: true, message: "Please Enter Amount!" }]}
+              >
+                <Input
+                  onChange={(e) => {
+                    setGivenAmount(+e.target.value);
+                  }}
+                />
+              </Form.Item>
+              {alert && (
+                <Alert
+                  message="Please add Equivalent or Greater Amount"
+                  type="error"
+                  style={{ marginTop: "5px" }}
+                ></Alert>
+              )}
+              <Form.Item label="Total Item Cost">
+                <h2 className="price">
+                  {quantity}
+                  <span style={{ float: "right" }}>
+                    <Button
+                      type="primary"
+                      onClick={() => setVisible(true)}
+                      disabled={
+                        !name ||
+                        !selectedItems ||
+                        !givenAmount ||
+                        orderAmount > givenAmount
+                      }
+                    >
+                      Next
+                      <CaretRightOutlined />
+                    </Button>
+                    <Modal
+                      title="Order Detail"
+                      centered
+                      visible={visible}
+                      onOk={() => setVisible(false)}
+                      onCancel={() => setVisible(false)}
+                      footer={[
+                        <Button type="primary">Cancel</Button>,
+                        <Button
+                          onClick={() => {
+                            onFormSubmit();
+                            setLoading(true);
+                          }}
+                          disabled={
+                            givenAmount < quantity ||
+                            loading === true ||
+                            !quantity
+                          }
+                        >
+                          Place Order
+                        </Button>,
+                      ]}
+                      width={1000}
+                    >
+                      <Spin spinning={loading}>
+                        <div>
+                          {selectedItems?.items?.map(
+                            (obj: OrderItem, index: number) => {
+                              return (
+                                <div key={`${obj.id} ${index}`}>
+                                  <div>
+                                    <ul>
+                                      <li>
+                                        <h3>
+                                          Restaurant Name: {obj.restaurantName}
+                                        </h3>
+                                      </li>
+                                      <li>
+                                        <h3>Restaurant Item: {obj.dish}</h3>
+                                      </li>
+                                      <li>
+                                        <h3>Item Cost: {obj.amount}</h3>
+                                      </li>
+                                      <li>
+                                        <h3>
+                                          Quantity: {obj.quantity}
+                                          <span>
+                                            {/* {quantity <= 1 ? ( */}
+                                            <Button
+                                              htmlType="submit"
+                                              style={{
+                                                float: "right",
+                                              }}
+                                              onClick={() => increment(obj)}
+                                            >
+                                              Increment
+                                            </Button>
+                                            {/* ) : ( */}
+                                            <Button
+                                              htmlType="submit"
+                                              style={{
+                                                float: "right",
+                                                marginRight: "10px",
+                                              }}
+                                              onClick={() => decrement(obj)}
+                                            >
+                                              Decrement
+                                            </Button>
+                                            {/* )} */}
+                                          </span>
+                                        </h3>
+                                      </li>
+                                    </ul>
+                                  </div>
+                                  <hr />
+                                </div>
+                              );
+                            }
+                          )}
+                          <div
+                            style={{
+                              display: "flex",
+                              justifyContent: "flex-end",
+                            }}
+                          >
                             <h2>Total Item Costs: {quantity}</h2>
                           </div>
-                          <br />
+                          <div
+                            style={{
+                              display: "flex",
+                              justifyContent: "flex-end",
+                            }}
+                          >
+                            <h2>Amount You Have: {givenAmount}</h2>
+                          </div>
+                          <div
+                            style={{
+                              display: "flex",
+                              justifyContent: "flex-end",
+                              marginBottom: "-25px",
+                            }}
+                          >
+                            <h2>
+                              Amount To Return:{" "}
+                              {givenAmount < quantity ? 0 : returnAmount}
+                            </h2>
+                          </div>
                         </div>
-                      </Modal>
-                    </span>
-                  </h2>
-                </Form.Item>
-                <Form.Item label="Cash to Return">
+                      </Spin>
+                    </Modal>
+                  </span>
+                </h2>
+              </Form.Item>
+              {/* <Form.Item label="Cash to Return">
                   <h2>{givenAmount < quantity ? 0 : returnAmount}</h2>
-                </Form.Item>
-                <Form.Item>
+                </Form.Item> */}
+              {/* <Form.Item>
                   <Button
                     htmlType="submit"
                     style={{ float: "right" }}
-                    // disabled={
-                    //   selectedItems && givenAmount
-                    //     ? false
-                    //     : true
-                    // }
                     disabled={
                       !selectedItems ||
                       !givenAmount ||
@@ -351,8 +404,8 @@ const InputField: React.FC<InputProps> = ({ setData, setId }) => {
                   >
                     Place Order
                   </Button>
-                </Form.Item>
-              </Spin>
+                </Form.Item> */}
+              {/* </Spin> */}
             </Form>
           </Paper>
         </Box>
