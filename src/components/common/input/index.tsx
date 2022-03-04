@@ -268,7 +268,7 @@ const InputField: React.FC<InputProps> = ({ setData, setId }) => {
                       <CaretRightOutlined />
                     </Button>
                     <Modal
-                      title="Order Detail"
+                      title="User Order Detail"
                       centered
                       visible={visible}
                       onOk={() => setVisible(false)}
