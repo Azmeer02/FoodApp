@@ -76,18 +76,19 @@ const InputField: React.FC<InputProps> = ({ setData, setId }) => {
   };
 
   const increment = (obj: OrderItem) => {
-    setSelectedItems((s: any) => {
-      return {
-        ...s,
-        items: s.items.map((i: OrderItem) => {
-          return {
-            ...i,
-            quantity: i.id === obj.id ? i.quantity++ : i.quantity,
-          };
-        }),
-      };
-    });
-    setQuantity(0);
+    // setSelectedItems((s: any) => {
+    //   return {
+    //     ...s,
+    //     items: s.items.map((i: OrderItem) => {
+    //       return {
+    //         ...i,
+    //         quantity: i.id === obj.id ? i.quantity++ : i.quantity,
+    //       };
+    //     }),
+    //   };
+    // });
+    // setQuantity(0);
+    console.log("running");
   };
 
   const decrement = (obj: OrderItem) => {
