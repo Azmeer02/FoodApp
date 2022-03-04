@@ -76,6 +76,10 @@ const InputField: React.FC<InputProps> = ({ setData, setId }) => {
   };
 
   const increment = (obj: OrderItem) => {
+    selectedItems?.items?.forEach((i: OrderItem) =>
+      i.id === obj.id ? obj.quantity++ : i
+    );
+    setQuantity(0);
     // setSelectedItems((s: any) => {
     //   return {
     //     ...s,
