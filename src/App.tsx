@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import InputField from "./components/common/input";
 import Dashboard from "./components/common/screens";
+import Error from "./components/Error";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 interface Props {
@@ -12,13 +13,6 @@ interface Props {
   totalAmount: number;
   id: string;
 }
-
-// interface Props {
-//   restaurantName: string;
-//   id: number;
-//   dish: string;
-//   amount: number;
-// }
 
 const App: React.FC = () => {
   const [data, setData] = useState<Props | null>(null);
@@ -36,7 +30,7 @@ const App: React.FC = () => {
             path="order-page"
             element={<Dashboard data={data} id={id} />}
           />
-          {/* <Route path="/" element={<Temp setData={setData} setId={setId} />} /> */}
+          <Route path="*" element={<Error />} />
         </Routes>
       </Router>
     </div>
