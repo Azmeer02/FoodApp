@@ -59,7 +59,7 @@ const Dashboard: React.FC<InputProps> = ({ data, id }: any) => {
 
   const calcTotalCost = (items: any) => {
     let sumOfAmount = 0;
-    items.forEach((price: any) => {
+    items?.forEach((price: any) => {
       let sumOfPrice = price.amount * price.quantity;
       sumOfAmount += sumOfPrice;
     });
